@@ -61,7 +61,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Fashion brand colors
+				'rose-gold': 'hsl(var(--rose-gold))',
+				'deep-purple': 'hsl(var(--deep-purple))',
+				'luxury-gold': 'hsl(var(--luxury-gold))'
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-luxury': 'var(--gradient-luxury)',
+				'gradient-subtle': 'var(--gradient-subtle)'
+			},
+			boxShadow: {
+				'luxury': 'var(--shadow-luxury)',
+				'card': 'var(--shadow-card)',
+				'glow': 'var(--shadow-glow)'
+			},
+			transitionTimingFunction: {
+				'luxury': 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
