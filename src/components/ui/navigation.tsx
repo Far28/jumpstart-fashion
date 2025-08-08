@@ -5,10 +5,12 @@ import { ShoppingBag, Search, User, Menu, LogOut, Settings } from "lucide-react"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, profile, signOut } = useAuth();
+  const { getTotalItems } = useCart();
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -25,21 +27,21 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link to="/collections" className="text-sm font-medium hover:text-accent transition-colors">
               Collections
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+            </Link>
+            <Link to="/women" className="text-sm font-medium hover:text-accent transition-colors">
               Women
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+            </Link>
+            <Link to="/men" className="text-sm font-medium hover:text-accent transition-colors">
               Men
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+            </Link>
+            <Link to="/accessories" className="text-sm font-medium hover:text-accent transition-colors">
               Accessories
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+            </Link>
+            <Link to="/sale" className="text-sm font-medium hover:text-accent transition-colors">
               Sale
-            </a>
+            </Link>
           </div>
 
           {/* Actions */}
@@ -94,11 +96,15 @@ export const Navigation = () => {
                 </Link>
               </Button>
             )}
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingBag className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-accent text-accent-foreground">
-                3
-              </Badge>
+            <Button variant="ghost" size="icon" className="relative" asChild>
+              <Link to="/cart">
+                <ShoppingBag className="h-5 w-5" />
+                {getTotalItems() > 0 && (
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-accent text-accent-foreground">
+                    {getTotalItems()}
+                  </Badge>
+                )}
+              </Link>
             </Button>
             <Button
               variant="ghost"
@@ -115,21 +121,21 @@ export const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/40">
             <div className="flex flex-col space-y-4">
-              <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+              <Link to="/collections" className="text-sm font-medium hover:text-accent transition-colors">
                 Collections
-              </a>
-              <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+              </Link>
+              <Link to="/women" className="text-sm font-medium hover:text-accent transition-colors">
                 Women
-              </a>
-              <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+              </Link>
+              <Link to="/men" className="text-sm font-medium hover:text-accent transition-colors">
                 Men
-              </a>
-              <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+              </Link>
+              <Link to="/accessories" className="text-sm font-medium hover:text-accent transition-colors">
                 Accessories
-              </a>
-              <a href="#" className="text-sm font-medium hover:text-accent transition-colors">
+              </Link>
+              <Link to="/sale" className="text-sm font-medium hover:text-accent transition-colors">
                 Sale
-              </a>
+              </Link>
               <div className="pt-4 border-t border-border/40">
                 <Button variant="ghost" className="w-full justify-start">
                   <Search className="h-4 w-4 mr-2" />

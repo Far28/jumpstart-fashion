@@ -14,6 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
+      cart_items: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          id: string
+          product_id: string | null
+          quantity: number
+          size: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          quantity?: number
+          size?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          quantity?: number
+          size?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          brand: string | null
+          category: string
+          colors: string[] | null
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          images: string[] | null
+          is_sale: boolean | null
+          name: string
+          price: number
+          rating: number | null
+          review_count: number | null
+          sale_price: number | null
+          sizes: string[] | null
+          stock_quantity: number | null
+          subcategory: string | null
+          tags: string[] | null
+          updated_at: string | null
+        }
+        Insert: {
+          brand?: string | null
+          category: string
+          colors?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          is_sale?: boolean | null
+          name: string
+          price: number
+          rating?: number | null
+          review_count?: number | null
+          sale_price?: number | null
+          sizes?: string[] | null
+          stock_quantity?: number | null
+          subcategory?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+        }
+        Update: {
+          brand?: string | null
+          category?: string
+          colors?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          images?: string[] | null
+          is_sale?: boolean | null
+          name?: string
+          price?: number
+          rating?: number | null
+          review_count?: number | null
+          sale_price?: number | null
+          sizes?: string[] | null
+          stock_quantity?: number | null
+          subcategory?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -43,6 +150,47 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      reviews: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          id: string
+          product_id: string | null
+          rating: number
+          title: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          rating: number
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          rating?: number
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
