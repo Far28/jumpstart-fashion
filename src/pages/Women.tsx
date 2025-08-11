@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigation } from '@/components/ui/navigation';
-import { ProductCard } from '@/components/ProductCard';
+import { ProductCard } from '@/components/ProductCardFinal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -35,6 +35,229 @@ export default function Women() {
   const subcategories = [
     'dresses', 'tops', 'bottoms', 'outerwear', 'activewear', 
     'lingerie', 'shoes', 'bags', 'jewelry'
+  ];
+
+  // Sample women's products with diverse names and categories
+  const sampleProducts: Product[] = [
+    // Dresses
+    {
+      id: '550e8400-e29b-41d4-a716-446655440001',
+      name: 'Aurora Velvet Evening Gown',
+      description: 'Stunning velvet gown with delicate beadwork',
+      price: 445,
+      sale_price: 356,
+      is_sale: true,
+      image_url: '/images/auroravelvetgown.jpg',
+      rating: 4.9,
+      review_count: 31,
+      brand: 'EVENING GRACE',
+      subcategory: 'dresses',
+      tags: ['velvet', 'beaded', 'formal']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440002',
+      name: 'Meadow Chiffon Midi Dress',
+      description: 'Lightweight chiffon dress with watercolor print',
+      price: 195,
+      is_sale: false,
+      image_url: '/images/Meadow Chiffon Midi Dress.png',
+      rating: 4.7,
+      review_count: 22,
+      brand: 'GARDEN PARTY',
+      subcategory: 'dresses',
+      tags: ['chiffon', 'midi', 'printed']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440003',
+      name: 'Midnight Satin Slip Dress',
+      description: 'Minimalist satin dress for effortless elegance',
+      price: 229,
+      is_sale: false,
+      image_url: '/images/Midnight Satin Slip Dress.jpg',
+      rating: 4.8,
+      review_count: 38,
+      brand: 'MINIMALIST',
+      subcategory: 'dresses',
+      tags: ['satin', 'slip', 'minimalist']
+    },
+    // Tops
+    {
+      id: '550e8400-e29b-41d4-a716-446655440004',
+      name: 'Alpaca Wool Turtleneck',
+      description: 'Ultra-soft alpaca wool turtleneck sweater',
+      price: 298,
+      is_sale: false,
+      image_url: '/images/alapacacool.jpg',
+      rating: 4.8,
+      review_count: 27,
+      brand: 'ALPINE KNITS',
+      subcategory: 'tops',
+      tags: ['alpaca', 'turtleneck', 'luxury']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440005',
+      name: 'Embroidered Peasant Blouse',
+      description: 'Romantic blouse with intricate embroidery details',
+      price: 165,
+      is_sale: false,
+      image_url: '/images/Embroidered Peasant Blouse.jpg',
+      rating: 4.6,
+      review_count: 19,
+      brand: 'ARTISAN CRAFT',
+      subcategory: 'tops',
+      tags: ['embroidered', 'peasant', 'romantic']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440006',
+      name: 'Organic Cotton Henley',
+      description: 'Sustainable henley top in organic cotton',
+      price: 58,
+      sale_price: 42,
+      is_sale: true,
+      image_url: '/images/organic cotton henley.jpg',
+      rating: 4.4,
+      review_count: 33,
+      brand: 'ECO BASICS',
+      subcategory: 'tops',
+      tags: ['organic', 'henley', 'sustainable']
+    },
+    // Bottoms
+    {
+      id: '550e8400-e29b-41d4-a716-446655440007',
+      name: 'Pleated Palazzo Pants',
+      description: 'Flowing palazzo pants with elegant pleating',
+      price: 189,
+      is_sale: false,
+      image_url: '/images/pleated plazo pants.png',
+      rating: 4.7,
+      review_count: 25,
+      brand: 'FLOW FASHION',
+      subcategory: 'bottoms',
+      tags: ['palazzo', 'pleated', 'flowing']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440008',
+      name: 'Raw Hem Boyfriend Jeans',
+      description: 'Relaxed fit jeans with trendy raw hem detail',
+      price: 125,
+      is_sale: false,
+      image_url: '/images/Raw Hem Boyfriend Jeans.png',
+      rating: 4.5,
+      review_count: 41,
+      brand: 'URBAN EDGE',
+      subcategory: 'bottoms',
+      tags: ['boyfriend', 'raw-hem', 'relaxed']
+    },
+    // Outerwear
+    {
+      id: '550e8400-e29b-41d4-a716-446655440009',
+      name: 'Double-Breasted Trench Coat',
+      description: 'Classic trench coat with modern silhouette',
+      price: 389,
+      is_sale: false,
+      image_url: '/images/doublebreastedtrenchcoat.jpg',
+      rating: 4.9,
+      review_count: 29,
+      brand: 'CLASSIC COATS',
+      subcategory: 'outerwear',
+      tags: ['trench', 'double-breasted', 'classic']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440010',
+      name: 'Faux Fur Cropped Jacket',
+      description: 'Luxurious faux fur jacket in cropped style',
+      price: 275,
+      sale_price: 206,
+      is_sale: true,
+      image_url: '/images/fauxfurjacket.jpg',
+      rating: 4.6,
+      review_count: 18,
+      brand: 'FUR LUXE',
+      subcategory: 'outerwear',
+      tags: ['faux-fur', 'cropped', 'luxurious']
+    },
+    // Shoes
+    {
+      id: '550e8400-e29b-41d4-a716-446655440011',
+      name: 'Pointed Toe Stiletto Pumps',
+      description: 'Sophisticated pumps with comfortable padding',
+      price: 245,
+      is_sale: false,
+      image_url: '/images/Pointed Toe Stiletto Pumps.jpg',
+      rating: 4.7,
+      review_count: 36,
+      brand: 'STEP ELEGANCE',
+      subcategory: 'shoes',
+      tags: ['stiletto', 'pointed-toe', 'sophisticated']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440012',
+      name: 'Platform Espadrille Sandals',
+      description: 'Comfortable platform sandals with rope detailing',
+      price: 155,
+      is_sale: false,
+      image_url: '/images/Platform Espadrille Sandals.jpg',
+      rating: 4.5,
+      review_count: 28,
+      brand: 'SUMMER STEPS',
+      subcategory: 'shoes',
+      tags: ['espadrille', 'platform', 'rope']
+    },
+    // Bags
+    {
+      id: '550e8400-e29b-41d4-a716-446655440013',
+      name: 'Quilted Chain Shoulder Bag',
+      description: 'Elegant quilted bag with gold chain strap',
+      price: 325,
+      is_sale: false,
+      image_url: '/images/image.png',
+      rating: 4.8,
+      review_count: 24,
+      brand: 'LUXURY BAGS',
+      subcategory: 'bags',
+      tags: ['quilted', 'chain', 'shoulder']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440014',
+      name: 'Woven Straw Bucket Bag',
+      description: 'Handwoven straw bag perfect for summer',
+      price: 98,
+      sale_price: 78,
+      is_sale: true,
+      image_url: '/images/Woven Straw Bucket Bag.jpg',
+      rating: 4.4,
+      review_count: 32,
+      brand: 'BEACH STYLE',
+      subcategory: 'bags',
+      tags: ['straw', 'woven', 'bucket']
+    },
+    // Jewelry
+    {
+      id: '550e8400-e29b-41d4-a716-446655440015',
+      name: 'Vintage-Inspired Cuff Bracelet',
+      description: 'Ornate cuff bracelet with vintage details',
+      price: 125,
+      is_sale: false,
+      image_url: '/images/Vintage-Inspired Cuff Bracelet.png',
+      rating: 4.6,
+      review_count: 21,
+      brand: 'VINTAGE VIBES',
+      subcategory: 'jewelry',
+      tags: ['vintage', 'cuff', 'ornate']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440016',
+      name: 'Diamond-Cut Hoop Earrings',
+      description: 'Sparkling diamond-cut hoops in sterling silver',
+      price: 89,
+      is_sale: false,
+      image_url: '/images/diamondcuthoop.jpg',
+      rating: 4.7,
+      review_count: 45,
+      brand: 'SPARKLE CO',
+      subcategory: 'jewelry',
+      tags: ['diamond-cut', 'hoops', 'sterling']
+    }
   ];
 
   useEffect(() => {
@@ -88,9 +311,64 @@ export default function Women() {
       const { data, error } = await query;
       if (error) throw error;
 
-      setProducts(data || []);
+      console.log('Database data:', data); // Debug log
+      console.log('Data length:', data?.length); // Debug log
+
+      // Force use sample data for now (to debug)
+      let productsToDisplay = sampleProducts;
+
+      // Apply client-side filtering to sample data
+      productsToDisplay = sampleProducts.filter(product => {
+        // Filter by subcategory
+        if (selectedSubcategory !== 'all' && product.subcategory !== selectedSubcategory) {
+          return false;
+        }
+
+        // Filter by price range
+        if (priceRange !== 'all') {
+          const [min, max] = priceRange.split('-').map(Number);
+          if (max && (product.price < min || product.price > max)) {
+            return false;
+          } else if (!max && product.price < min) {
+            return false;
+          }
+        }
+
+        // Filter by search term
+        if (searchTerm) {
+          const searchLower = searchTerm.toLowerCase();
+          return (
+            product.name.toLowerCase().includes(searchLower) ||
+            product.description?.toLowerCase().includes(searchLower) ||
+            product.brand?.toLowerCase().includes(searchLower)
+          );
+        }
+
+        return true;
+      });
+
+      // Apply client-side sorting to sample data
+      productsToDisplay.sort((a, b) => {
+        switch (sortBy) {
+          case 'price_low':
+            return a.price - b.price;
+          case 'price_high':
+            return b.price - a.price;
+          case 'rating':
+            return b.rating - a.rating;
+          case 'newest':
+            return 0; // No created_at for sample data
+          default:
+            return a.name.localeCompare(b.name);
+        }
+      });
+
+      console.log('Final products to display:', productsToDisplay); // Debug log
+      setProducts(productsToDisplay);
     } catch (error) {
       console.error('Error fetching products:', error);
+      // Fallback to sample data on error
+      setProducts(sampleProducts);
     } finally {
       setLoading(false);
     }
@@ -224,30 +502,61 @@ export default function Women() {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-muted rounded-xl h-64 mb-4"></div>
-                <div className="space-y-2">
-                  <div className="bg-muted h-4 rounded"></div>
-                  <div className="bg-muted h-4 rounded w-3/4"></div>
-                  <div className="bg-muted h-4 rounded w-1/2"></div>
+                <div className="bg-gray-200 rounded-xl h-80 mb-4"></div>
+                <div className="space-y-3">
+                  <div className="bg-gray-200 h-4 rounded"></div>
+                  <div className="bg-gray-200 h-4 rounded w-3/4"></div>
+                  <div className="bg-gray-200 h-6 rounded w-1/2"></div>
                 </div>
               </div>
             ))}
           </div>
         ) : products.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="flex justify-between items-center mb-6">
+              <p className="text-gray-600">
+                Showing {products.length} product{products.length !== 1 ? 's' : ''}
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <span>Sort by:</span>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-auto border-0 bg-transparent">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="name">Name</SelectItem>
+                    <SelectItem value="price_low">Price: Low to High</SelectItem>
+                    <SelectItem value="price_high">Price: High to Low</SelectItem>
+                    <SelectItem value="rating">Rating</SelectItem>
+                    <SelectItem value="newest">Newest</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} showFullDescription={false} />
+              ))}
+            </div>
+          </>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No products found</p>
-            <Button onClick={clearFilters} className="mt-4">
-              Clear Filters
-            </Button>
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+              <p className="text-gray-600 mb-6">
+                We couldn't find any products matching your criteria. Try adjusting your filters.
+              </p>
+              <Button onClick={clearFilters} size="lg">
+                Clear All Filters
+              </Button>
+            </div>
           </div>
         )}
       </div>

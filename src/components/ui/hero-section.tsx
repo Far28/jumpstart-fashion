@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-fashion.jpg";
 
 export const HeroSection = () => {
@@ -30,33 +31,38 @@ export const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                Discover our curated collection of premium fashion pieces that blend 
-                contemporary design with timeless elegance.
+                Experience fashion retail powered by AI insights. From our nationwide 
+                network of 750+ stores to personalized recommendations, discover premium 
+                pieces that speak to your unique style.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="btn-luxury group">
-                Shop Collection
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button variant="outline" className="border-foreground/20 hover:bg-foreground/5">
-                View Lookbook
-              </Button>
+              <Link to="/categories">
+                <Button className="btn-luxury group">
+                  Shop Collection
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link to="/lookbook">
+                <Button variant="outline" className="border-foreground/20 hover:bg-foreground/5">
+                  View Lookbook
+                </Button>
+              </Link>
             </div>
 
             <div className="flex items-center space-x-8 pt-8">
               <div className="text-center">
-                <p className="text-2xl font-light text-luxury">500+</p>
-                <p className="text-sm text-muted-foreground">Exclusive Pieces</p>
+                <p className="text-2xl font-light text-luxury">750+</p>
+                <p className="text-sm text-muted-foreground">Stores Nationwide</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-light text-luxury">50+</p>
-                <p className="text-sm text-muted-foreground">Designer Brands</p>
+                <p className="text-2xl font-light text-luxury">AI-Powered</p>
+                <p className="text-sm text-muted-foreground">Recommendations</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-light text-luxury">24/7</p>
-                <p className="text-sm text-muted-foreground">Customer Care</p>
+                <p className="text-2xl font-light text-luxury">Real-time</p>
+                <p className="text-sm text-muted-foreground">Sentiment Analysis</p>
               </div>
             </div>
           </div>

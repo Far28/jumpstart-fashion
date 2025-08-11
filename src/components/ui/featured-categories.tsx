@@ -1,27 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import productsImage from "@/assets/products-collection.jpg";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
     id: 1,
     name: "Dresses",
     description: "Elegant pieces for every occasion",
-    image: productsImage,
+    image: "/images/dress.png",
     itemCount: 120,
   },
   {
     id: 2,
-    name: "Accessories",
-    description: "Complete your perfect look",
-    image: productsImage,
-    itemCount: 85,
+    name: "Clutches",
+    description: "Perfect evening companions",
+    image: "/images/image.png",
+    itemCount: 45,
   },
   {
     id: 3,
     name: "Footwear",
     description: "Step into luxury and comfort",
-    image: productsImage,
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     itemCount: 95,
   },
 ];
@@ -82,10 +82,12 @@ export const FeaturedCategories = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="btn-luxury">
-            View All Categories
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <Link to="/categories">
+            <Button className="btn-luxury">
+              View All Categories
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

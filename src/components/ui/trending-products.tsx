@@ -1,47 +1,46 @@
 import { ProductCard } from "./product-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import productsImage from "@/assets/products-collection.jpg";
 
 const trendingProducts = [
   {
     id: 1,
-    name: "Silk Midnight Elegance Dress",
-    price: 299,
-    originalPrice: 399,
-    image: productsImage,
-    brand: "LUXE ATELIER",
+    name: "Rose Gold Evening Clutch",
+    price: 199,
+    originalPrice: 259,
+    image: "/images/image.png",
+    brand: "GLAMOUR NIGHTS",
     rating: 4.8,
     isNew: false,
     isSale: true,
   },
   {
     id: 2,
-    name: "Cashmere Oversized Blazer",
-    price: 449,
-    image: productsImage,
-    brand: "MODERN ESSENCE",
+    name: "Merino Wool Cardigan",
+    price: 329,
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    brand: "WOOL HERITAGE",
     rating: 4.9,
     isNew: true,
     isSale: false,
   },
   {
     id: 3,
-    name: "Italian Leather Ankle Boots",
-    price: 329,
-    image: productsImage,
-    brand: "ARTISAN CRAFT",
+    name: "Suede Chelsea Boots",
+    price: 279,
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    brand: "LONDON SOLE",
     rating: 4.7,
     isNew: false,
     isSale: false,
   },
   {
     id: 4,
-    name: "Pearl Statement Necklace",
-    price: 189,
-    originalPrice: 249,
-    image: productsImage,
-    brand: "PEARL HOUSE",
+    name: "Geometric Statement Earrings",
+    price: 149,
+    originalPrice: 189,
+    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    brand: "MODERN JEWELS",
     rating: 4.6,
     isNew: false,
     isSale: true,
@@ -92,7 +91,19 @@ export const TrendingProducts = () => {
               personalized recommendations just for you. Experience fashion discovery 
               like never before.
             </p>
-            <Button className="btn-luxury">
+            <Button 
+              className="btn-luxury"
+              onClick={() => {
+                // Scroll to the AI recommendations test section
+                const aiSection = document.querySelector('[data-ai-recommendations]');
+                if (aiSection) {
+                  aiSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  // Fallback: scroll to bottom where AI sections are
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }
+              }}
+            >
               Get My Recommendations
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

@@ -1,73 +1,169 @@
-# Welcome to your Lovable project
+# 🛍️ JumpStart Fashion - Modern E-commerce Platform
 
-## Project info
+A professional e-commerce platform built with React, TypeScript, Supabase, and AI-powered recommendations.
 
-**URL**: https://lovable.dev/projects/5a83f8a5-1acd-4afa-a7f1-efd0e1dadfb2
+## 🚀 Features
 
-## How can I edit this code?
+- **Modern UI/UX**: Built with React 18, TypeScript, and Tailwind CSS
+- **AI-Powered Recommendations**: OpenAI integration for personalized product suggestions
+- **Secure Authentication**: Supabase Auth with Row Level Security
+- **Real-time Data**: Live updates with Supabase real-time subscriptions
+- **Mobile Responsive**: Optimized for all device sizes
+- **Dark/Light Mode**: Theme switching support
+- **Shopping Cart**: Full cart functionality with local storage
+- **Product Reviews**: User review and rating system
+- **Search & Filter**: Advanced product filtering and search
 
-There are several ways of editing your application.
+## 🛠️ Technology Stack
 
-**Use Lovable**
+### Frontend
+- **React 18.3.1** - Modern React with hooks
+- **TypeScript 5.8.3** - Type-safe development
+- **Vite 5.4.19** - Fast build tool and dev server
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **Shadcn/ui** - Beautiful, accessible UI components
+- **React Router DOM** - Client-side routing
+- **React Query** - Server state management
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5a83f8a5-1acd-4afa-a7f1-efd0e1dadfb2) and start prompting.
+### Backend
+- **Supabase** - Backend-as-a-Service
+- **PostgreSQL** - Database with RLS security
+- **Deno Edge Functions** - Serverless functions
+- **OpenAI API** - AI recommendations
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Quick Start
 
-**Use your preferred IDE**
+### Prerequisites
+- **Node.js 18+** or **Bun**
+- **Supabase CLI** (optional)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd jumpstartfashion
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
+# or using bun (recommended)
+bun install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🗄️ Database Schema
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Core Tables
+- **profiles** - User profile information
+- **products** - Product catalog with categories
+- **cart_items** - Shopping cart functionality
+- **reviews** - Product reviews and ratings
 
-**Use GitHub Codespaces**
+### Security
+- Row Level Security (RLS) enabled
+- JWT-based authentication
+- Protected API endpoints
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🤖 AI Features
 
-## What technologies are used for this project?
+- **Smart Recommendations**: OpenAI-powered product suggestions
+- **Personalization**: Based on user preferences and history
+- **Category Filtering**: Intelligent product filtering
 
-This project is built with:
+## 🎨 UI/UX
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Responsive Design**: Mobile-first approach
+- **Dark/Light Theme**: User preference support
+- **Smooth Animations**: Tailwind CSS animations
+- **Accessible Components**: ARIA-compliant UI
 
-## How can I deploy this project?
+## 📊 Project Status
 
-Simply open [Lovable](https://lovable.dev/projects/5a83f8a5-1acd-4afa-a7f1-efd0e1dadfb2) and click on Share -> Publish.
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Frontend | 🟢 Working | React app on port 8081 |
+| Database | 🟢 Active | Supabase PostgreSQL |
+| Authentication | 🟢 Ready | Supabase Auth with RLS |
+| AI Function | 🟡 Ready | Needs deployment |
+| UI Components | 🟢 Complete | Shadcn/ui integrated |
+| Testing | � Complete | Vitest + Testing Library |
+| Error Tracking | 🟢 Ready | Sentry integration |
 
-## Can I connect a custom domain to my Lovable project?
+## 🧪 Testing
 
-Yes, you can!
+```bash
+# Run all tests
+npm run test
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Run tests with UI
+npm run test:ui
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Run tests once
+npm run test:run
+
+# Type checking
+npm run type-check
+
+# Test coverage
+npm run test:coverage
+```
+
+## 🚀 Production Deployment
+
+### Quick Start Production Setup
+
+1. **Add Sample Data**
+   ```bash
+   # Run the SQL script in Supabase Dashboard > SQL Editor
+   # File: insert-sample-data-direct.sql
+   ```
+
+2. **Configure Environment**
+   ```bash
+   # Add your OpenAI API key to .env.local
+   VITE_OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+3. **Deploy AI Function**
+   - Go to Supabase Dashboard > Edge Functions
+   - Create new function: `ai-recommendations`
+   - Copy code from `supabase/functions/ai-recommendations/index.ts`
+
+4. **Deploy Frontend**
+   ```bash
+   # Build for production
+   npm run build
+   
+   # Deploy to Vercel
+   vercel
+   
+   # Or deploy to Netlify
+   # Upload dist/ folder
+   ```
+
+### Deployment Options
+- **Vercel**: Recommended for React apps
+- **Netlify**: Great for static sites
+- **GitHub Pages**: Free hosting option
+
+## 📋 Production Checklist
+
+See `PRODUCTION_CHECKLIST.md` for detailed deployment steps and system health status.
+
+## 🔧 Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run test         # Run tests in watch mode
+npm run test:run     # Run tests once
+npm run test:ui      # Run tests with UI
+npm run lint         # Run ESLint
+npm run type-check   # TypeScript type checking
+npm run db:seed      # Seed database with sample data
+```

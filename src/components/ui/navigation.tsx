@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ShoppingBag, Search, User, Menu, LogOut, Settings } from "lucide-react";
+import { ShoppingBag, Search, User, Menu, LogOut, Settings, BarChart3 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { SearchDialog } from "@/components/SearchDialog";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,8 +28,14 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/collections" className="text-sm font-medium hover:text-accent transition-colors">
-              Collections
+            <Link to="/" className="text-sm font-medium hover:text-accent transition-colors">
+              Home
+            </Link>
+            <Link to="/categories" className="text-sm font-medium hover:text-accent transition-colors">
+              Categories
+            </Link>
+            <Link to="/lookbook" className="text-sm font-medium hover:text-accent transition-colors">
+              Lookbook
             </Link>
             <Link to="/women" className="text-sm font-medium hover:text-accent transition-colors">
               Women
@@ -42,13 +49,14 @@ export const Navigation = () => {
             <Link to="/sale" className="text-sm font-medium hover:text-accent transition-colors">
               Sale
             </Link>
+            <Link to="/stores" className="text-sm font-medium hover:text-accent transition-colors">
+              Stores
+            </Link>
           </div>
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Search className="h-5 w-5" />
-            </Button>
+            <SearchDialog />
             
             {/* User Menu */}
             {user ? (
@@ -77,6 +85,12 @@ export const Navigation = () => {
                     <Link to="/profile" className="flex items-center">
                       <Settings className="mr-2 h-4 w-4" />
                       Profile Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/admin" className="flex items-center">
+                      <BarChart3 className="mr-2 h-4 w-4" />
+                      Management Dashboard
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -121,8 +135,14 @@ export const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/40">
             <div className="flex flex-col space-y-4">
-              <Link to="/collections" className="text-sm font-medium hover:text-accent transition-colors">
-                Collections
+              <Link to="/" className="text-sm font-medium hover:text-accent transition-colors">
+                Home
+              </Link>
+              <Link to="/categories" className="text-sm font-medium hover:text-accent transition-colors">
+                Categories
+              </Link>
+              <Link to="/lookbook" className="text-sm font-medium hover:text-accent transition-colors">
+                Lookbook
               </Link>
               <Link to="/women" className="text-sm font-medium hover:text-accent transition-colors">
                 Women

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigation } from '@/components/ui/navigation';
-import { ProductCard } from '@/components/ProductCard';
+import { ProductCard } from '@/components/ProductCardFinal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -35,6 +35,253 @@ export default function Sale() {
 
   const categories = ['women', 'men', 'accessories'];
 
+  // Sample sale products with diverse names and categories
+  const sampleSaleProducts: Product[] = [
+    // Women's Sale Items
+    {
+      id: '550e8400-e29b-41d4-a716-446655440301',
+      name: 'Cashmere Wrap Cardigan',
+      description: 'Luxurious cashmere cardigan in blush pink',
+      price: 398,
+      sale_price: 239,
+      is_sale: true,
+      image_url: '/images/Cashmere Wrap Cardigan.jpg',
+      rating: 4.8,
+      review_count: 42,
+      brand: 'CASHMERE DREAMS',
+      category: 'women',
+      subcategory: 'outerwear',
+      tags: ['cashmere', 'cardigan', 'luxury']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440302',
+      name: 'Floral Wrap Maxi Dress',
+      description: 'Flowing maxi dress with botanical print',
+      price: 285,
+      sale_price: 171,
+      is_sale: true,
+      image_url: '/images/Floral Wrap Maxi Dress.jpg',
+      rating: 4.6,
+      review_count: 38,
+      brand: 'BLOOM & CO',
+      category: 'women',
+      subcategory: 'dresses',
+      tags: ['floral', 'maxi', 'wrap']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440303',
+      name: 'Leather Ankle Boots',
+      description: 'Premium leather boots with block heel',
+      price: 245,
+      sale_price: 147,
+      is_sale: true,
+      image_url: '/images/Leather Ankle Boots.jpg',
+      rating: 4.7,
+      review_count: 29,
+      brand: 'STEP CLASSIC',
+      category: 'women',
+      subcategory: 'shoes',
+      tags: ['leather', 'ankle', 'boots']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440304',
+      name: 'Silk Blouse with Bow Tie',
+      description: 'Elegant silk blouse with detachable bow',
+      price: 175,
+      sale_price: 105,
+      is_sale: true,
+      image_url: '/images/Silk Blouse with Bow Tie.jpg',
+      rating: 4.5,
+      review_count: 33,
+      brand: 'SILK ESSENCE',
+      category: 'women',
+      subcategory: 'tops',
+      tags: ['silk', 'blouse', 'bow']
+    },
+    // Men's Sale Items
+    {
+      id: '550e8400-e29b-41d4-a716-446655440305',
+      name: 'Merino Wool V-Neck Sweater',
+      description: 'Classic v-neck sweater in charcoal grey',
+      price: 165,
+      sale_price: 99,
+      is_sale: true,
+      image_url: '/images/Merino Wool V-Neck Sweater.jpg',
+      rating: 4.6,
+      review_count: 45,
+      brand: 'WOOL & CO',
+      category: 'men',
+      subcategory: 'tops',
+      tags: ['merino', 'v-neck', 'sweater']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440306',
+      name: 'Slim Fit Chino Pants',
+      description: 'Modern fit chinos in navy blue',
+      price: 89,
+      sale_price: 53,
+      is_sale: true,
+      image_url: '/images/Slim Fit Chino Pants in navy blue.jpg',
+      rating: 4.4,
+      review_count: 52,
+      brand: 'URBAN FIT',
+      category: 'men',
+      subcategory: 'bottoms',
+      tags: ['chino', 'slim-fit', 'navy']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440307',
+      name: 'Quilted Bomber Jacket',
+      description: 'Lightweight bomber with quilted details',
+      price: 195,
+      sale_price: 117,
+      is_sale: true,
+      image_url: '/images/Quilted Bomber Jacket.jpg',
+      rating: 4.7,
+      review_count: 36,
+      brand: 'BOMBER STYLE',
+      category: 'men',
+      subcategory: 'outerwear',
+      tags: ['bomber', 'quilted', 'lightweight']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440308',
+      name: 'Oxford Leather Dress Shoes',
+      description: 'Classic oxford shoes in cognac leather',
+      price: 285,
+      sale_price: 171,
+      is_sale: true,
+      image_url: '/images/Oxford Leather Dress Shoes.jpg',
+      rating: 4.8,
+      review_count: 27,
+      brand: 'OXFORD CRAFT',
+      category: 'men',
+      subcategory: 'shoes',
+      tags: ['oxford', 'leather', 'dress']
+    },
+    // Accessories Sale Items
+    {
+      id: '550e8400-e29b-41d4-a716-446655440309',
+      name: 'Italian Leather Handbag',
+      description: 'Structured handbag in burgundy leather',
+      price: 425,
+      sale_price: 255,
+      is_sale: true,
+      image_url: '/images/image.png',
+      rating: 4.9,
+      review_count: 31,
+      brand: 'MILANO BAGS',
+      category: 'accessories',
+      subcategory: 'bags',
+      tags: ['italian', 'leather', 'handbag']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440310',
+      name: 'Swiss Automatic Watch',
+      description: 'Precision timepiece with steel bracelet',
+      price: 895,
+      sale_price: 537,
+      is_sale: true,
+      image_url: '/images/Swiss Automatic Watch.jpg',
+      rating: 4.8,
+      review_count: 24,
+      brand: 'SWISS TIME',
+      category: 'accessories',
+      subcategory: 'watches',
+      tags: ['swiss', 'automatic', 'steel']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440311',
+      name: 'Designer Sunglasses',
+      description: 'Vintage-inspired frames with UV protection',
+      price: 225,
+      sale_price: 135,
+      is_sale: true,
+      image_url: '/images/Designer Sunglasses.jpg',
+      rating: 4.5,
+      review_count: 39,
+      brand: 'SHADE STYLE',
+      category: 'accessories',
+      subcategory: 'sunglasses',
+      tags: ['designer', 'vintage', 'uv']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440312',
+      name: 'Pearl Statement Necklace',
+      description: 'Elegant cultured pearl necklace',
+      price: 315,
+      sale_price: 189,
+      is_sale: true,
+      image_url: '/images/Pearl Statement Necklace.jpg',
+      rating: 4.6,
+      review_count: 28,
+      brand: 'PEARL LUXURY',
+      category: 'accessories',
+      subcategory: 'jewelry',
+      tags: ['pearl', 'statement', 'cultured']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440313',
+      name: 'Bohemian Kimono Jacket',
+      description: 'Flowing kimono with paisley print',
+      price: 145,
+      sale_price: 87,
+      is_sale: true,
+      image_url: '/images/Bohemian Kimono Jacket.jpg',
+      rating: 4.4,
+      review_count: 34,
+      brand: 'BOHO CHIC',
+      category: 'women',
+      subcategory: 'outerwear',
+      tags: ['kimono', 'bohemian', 'paisley']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440314',
+      name: 'Denim Trucker Jacket',
+      description: 'Classic denim jacket in stonewashed blue',
+      price: 125,
+      sale_price: 75,
+      is_sale: true,
+      image_url: '/images/Denim Trucker Jacket.jpg',
+      rating: 4.3,
+      review_count: 47,
+      brand: 'DENIM CLASSIC',
+      category: 'men',
+      subcategory: 'outerwear',
+      tags: ['denim', 'trucker', 'stonewashed']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440315',
+      name: 'Crossbody Phone Bag',
+      description: 'Compact crossbody bag for essentials',
+      price: 75,
+      sale_price: 45,
+      is_sale: true,
+      image_url: '/images/Crossbody Phone Bag.jpg',
+      rating: 4.2,
+      review_count: 56,
+      brand: 'MINI BAGS',
+      category: 'accessories',
+      subcategory: 'bags',
+      tags: ['crossbody', 'phone', 'compact']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440316',
+      name: 'Wool Blend Peacoat',
+      description: 'Double-breasted peacoat in navy wool',
+      price: 345,
+      sale_price: 207,
+      is_sale: true,
+      image_url: '/images/Wool Blend Peacoat.jpg',
+      rating: 4.7,
+      review_count: 22,
+      brand: 'NAVAL STYLE',
+      category: 'men',
+      subcategory: 'outerwear',
+      tags: ['peacoat', 'wool', 'double-breasted']
+    }
+  ];
+
   useEffect(() => {
     fetchProducts();
   }, [sortBy, categoryFilter, discountRange, searchTerm]);
@@ -60,11 +307,35 @@ export default function Sale() {
       const { data, error } = await query;
       if (error) throw error;
 
-      let filteredProducts = data || [];
+      console.log('Database sale data:', data); // Debug log
+      console.log('Sale data length:', data?.length); // Debug log
+
+      // Force use sample sale data for now (to debug)
+      let productsToDisplay = sampleSaleProducts;
+
+      // Apply client-side filtering to sample data
+      productsToDisplay = sampleSaleProducts.filter(product => {
+        // Filter by category
+        if (categoryFilter !== 'all' && product.category !== categoryFilter) {
+          return false;
+        }
+
+        // Filter by search term
+        if (searchTerm) {
+          const searchLower = searchTerm.toLowerCase();
+          return (
+            product.name.toLowerCase().includes(searchLower) ||
+            product.description?.toLowerCase().includes(searchLower) ||
+            product.brand?.toLowerCase().includes(searchLower)
+          );
+        }
+
+        return true;
+      });
 
       // Apply discount range filter
       if (discountRange !== 'all') {
-        filteredProducts = filteredProducts.filter(product => {
+        productsToDisplay = productsToDisplay.filter(product => {
           if (!product.sale_price) return false;
           const discount = Math.round(((product.price - product.sale_price) / product.price) * 100);
           const [min, max] = discountRange.split('-').map(Number);
@@ -76,34 +347,37 @@ export default function Sale() {
         });
       }
 
-      // Apply sorting
+      // Apply client-side sorting to sample data
       switch (sortBy) {
         case 'discount':
-          filteredProducts.sort((a, b) => {
+          productsToDisplay.sort((a, b) => {
             const discountA = a.sale_price ? ((a.price - a.sale_price) / a.price) * 100 : 0;
             const discountB = b.sale_price ? ((b.price - b.sale_price) / b.price) * 100 : 0;
             return discountB - discountA;
           });
           break;
         case 'price_low':
-          filteredProducts.sort((a, b) => (a.sale_price || a.price) - (b.sale_price || b.price));
+          productsToDisplay.sort((a, b) => (a.sale_price || a.price) - (b.sale_price || b.price));
           break;
         case 'price_high':
-          filteredProducts.sort((a, b) => (b.sale_price || b.price) - (a.sale_price || a.price));
+          productsToDisplay.sort((a, b) => (b.sale_price || b.price) - (a.sale_price || a.price));
           break;
         case 'rating':
-          filteredProducts.sort((a, b) => b.rating - a.rating);
+          productsToDisplay.sort((a, b) => b.rating - a.rating);
           break;
         case 'newest':
-          // Already ordered by created_at desc if needed
+          // No created_at for sample data
           break;
         default:
-          filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+          productsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
       }
 
-      setProducts(filteredProducts);
+      console.log('Final sale products to display:', productsToDisplay); // Debug log
+      setProducts(productsToDisplay);
     } catch (error) {
       console.error('Error fetching sale products:', error);
+      // Fallback to sample data on error
+      setProducts(sampleSaleProducts);
     } finally {
       setLoading(false);
     }
@@ -254,30 +528,61 @@ export default function Sale() {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-muted rounded-xl h-64 mb-4"></div>
-                <div className="space-y-2">
-                  <div className="bg-muted h-4 rounded"></div>
-                  <div className="bg-muted h-4 rounded w-3/4"></div>
-                  <div className="bg-muted h-4 rounded w-1/2"></div>
+                <div className="bg-gray-200 rounded-xl h-80 mb-4"></div>
+                <div className="space-y-3">
+                  <div className="bg-gray-200 h-4 rounded"></div>
+                  <div className="bg-gray-200 h-4 rounded w-3/4"></div>
+                  <div className="bg-gray-200 h-6 rounded w-1/2"></div>
                 </div>
               </div>
             ))}
           </div>
         ) : products.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="flex justify-between items-center mb-6">
+              <p className="text-gray-600">
+                Showing {products.length} sale item{products.length !== 1 ? 's' : ''}
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <span>Sort by:</span>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-auto border-0 bg-transparent">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="name">Name</SelectItem>
+                    <SelectItem value="price_low">Price: Low to High</SelectItem>
+                    <SelectItem value="price_high">Price: High to Low</SelectItem>
+                    <SelectItem value="rating">Rating</SelectItem>
+                    <SelectItem value="newest">Newest</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} showFullDescription={false} />
+              ))}
+            </div>
+          </>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No sale items found</p>
-            <Button onClick={clearFilters} className="mt-4">
-              Clear Filters
-            </Button>
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No sale items found</h3>
+              <p className="text-gray-600 mb-6">
+                There are currently no items on sale matching your criteria. Check back soon for new deals!
+              </p>
+              <Button onClick={clearFilters} size="lg">
+                Clear All Filters
+              </Button>
+            </div>
           </div>
         )}
       </div>

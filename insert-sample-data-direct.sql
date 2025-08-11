@@ -1,0 +1,261 @@
+-- Insert sample products data directly into Supabase
+-- Run this in Supabase Dashboard > SQL Editor
+
+-- Temporarily disable RLS for products to insert sample data
+ALTER TABLE public.products DISABLE ROW LEVEL SECURITY;
+
+-- Insert sample products
+INSERT INTO public.products (
+  name, description, price, category, subcategory, brand, image_url, 
+  sizes, colors, stock_quantity, is_sale, sale_price, rating, review_count, tags
+) VALUES
+-- Women's Products
+(
+  'Elegant Evening Dress',
+  'A stunning black evening dress perfect for special occasions. Made from premium silk with intricate lace details.',
+  299.99,
+  'women',
+  'dresses',
+  'Luxe Fashion',
+  'https://images.unsplash.com/photo-1566479179817-c5c5e3e4a9f7?w=400&h=600&fit=crop',
+  ARRAY['XS', 'S', 'M', 'L', 'XL'],
+  ARRAY['Black', 'Navy', 'Burgundy'],
+  15,
+  true,
+  199.99,
+  4.8,
+  24,
+  ARRAY['evening', 'formal', 'silk', 'elegant', 'special occasion']
+),
+(
+  'Casual Summer Blouse',
+  'Light and breezy cotton blouse perfect for summer days. Features a relaxed fit and beautiful floral print.',
+  79.99,
+  'women',
+  'tops',
+  'Summer Breeze',
+  'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400&h=600&fit=crop',
+  ARRAY['XS', 'S', 'M', 'L', 'XL'],
+  ARRAY['White', 'Pink', 'Blue', 'Yellow'],
+  25,
+  false,
+  NULL,
+  4.5,
+  18,
+  ARRAY['casual', 'summer', 'cotton', 'floral', 'comfortable']
+),
+(
+  'Designer Skinny Jeans',
+  'Premium denim skinny jeans with stretch comfort. Classic design that pairs with any top.',
+  129.99,
+  'women',
+  'bottoms',
+  'Denim Co.',
+  'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&h=600&fit=crop',
+  ARRAY['24', '25', '26', '27', '28', '29', '30', '32'],
+  ARRAY['Dark Blue', 'Light Blue', 'Black'],
+  30,
+  false,
+  NULL,
+  4.6,
+  42,
+  ARRAY['denim', 'skinny', 'stretch', 'classic', 'versatile']
+),
+(
+  'Bohemian Maxi Dress',
+  'Flowy bohemian maxi dress with beautiful patterns. Perfect for casual outings and summer events.',
+  159.99,
+  'women',
+  'dresses',
+  'Boho Style',
+  'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=600&fit=crop',
+  ARRAY['XS', 'S', 'M', 'L', 'XL'],
+  ARRAY['Blue', 'Green', 'Purple', 'Orange'],
+  20,
+  true,
+  119.99,
+  4.4,
+  16,
+  ARRAY['bohemian', 'maxi', 'casual', 'summer', 'flowy']
+),
+
+-- Men's Products
+(
+  'Classic Business Suit',
+  'Tailored business suit made from premium wool. Perfect for professional settings and formal events.',
+  499.99,
+  'men',
+  'suits',
+  'Executive Style',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop',
+  ARRAY['S', 'M', 'L', 'XL', 'XXL'],
+  ARRAY['Navy', 'Charcoal', 'Black'],
+  12,
+  true,
+  399.99,
+  4.9,
+  31,
+  ARRAY['business', 'formal', 'wool', 'tailored', 'professional']
+),
+(
+  'Casual Cotton Polo',
+  'Comfortable cotton polo shirt perfect for casual outings and weekend activities.',
+  59.99,
+  'men',
+  'tops',
+  'Casual Kings',
+  'https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=400&h=600&fit=crop',
+  ARRAY['S', 'M', 'L', 'XL', 'XXL'],
+  ARRAY['White', 'Navy', 'Red', 'Green', 'Gray'],
+  40,
+  false,
+  NULL,
+  4.3,
+  27,
+  ARRAY['casual', 'cotton', 'polo', 'comfortable', 'weekend']
+),
+(
+  'Premium Chinos',
+  'Slim-fit chinos made from high-quality cotton twill. Versatile pants for both casual and smart-casual looks.',
+  89.99,
+  'men',
+  'bottoms',
+  'Urban Fit',
+  'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=600&fit=crop',
+  ARRAY['28', '30', '32', '34', '36', '38'],
+  ARRAY['Khaki', 'Navy', 'Black', 'Gray'],
+  35,
+  false,
+  NULL,
+  4.4,
+  19,
+  ARRAY['chinos', 'slim-fit', 'versatile', 'cotton', 'smart-casual']
+),
+(
+  'Casual Hoodie',
+  'Comfortable fleece hoodie perfect for casual wear and cooler weather.',
+  79.99,
+  'men',
+  'tops',
+  'Comfort Zone',
+  'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=600&fit=crop',
+  ARRAY['S', 'M', 'L', 'XL', 'XXL'],
+  ARRAY['Black', 'Gray', 'Navy', 'Burgundy'],
+  30,
+  false,
+  NULL,
+  4.2,
+  23,
+  ARRAY['casual', 'hoodie', 'comfortable', 'fleece', 'cozy']
+),
+
+-- Accessories
+(
+  'Leather Handbag',
+  'Genuine leather handbag with multiple compartments. Perfect for work or everyday use.',
+  199.99,
+  'accessories',
+  'bags',
+  'Leather Craft',
+  'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Black', 'Brown', 'Tan'],
+  20,
+  false,
+  NULL,
+  4.7,
+  33,
+  ARRAY['leather', 'handbag', 'work', 'everyday', 'genuine leather']
+),
+(
+  'Luxury Watch',
+  'Stainless steel watch with automatic movement. A timeless piece for any outfit.',
+  349.99,
+  'accessories',
+  'watches',
+  'Time Masters',
+  'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Silver', 'Gold', 'Black'],
+  8,
+  true,
+  279.99,
+  4.9,
+  15,
+  ARRAY['luxury', 'watch', 'stainless steel', 'automatic', 'timeless']
+),
+(
+  'Designer Sunglasses',
+  'UV protection sunglasses with polarized lenses. Stylish and functional.',
+  149.99,
+  'accessories',
+  'eyewear',
+  'Sun Shield',
+  'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Black', 'Tortoise', 'Silver'],
+  25,
+  false,
+  NULL,
+  4.2,
+  21,
+  ARRAY['sunglasses', 'UV protection', 'polarized', 'designer', 'stylish']
+),
+(
+  'Wool Winter Scarf',
+  'Soft wool scarf perfect for cold weather. Available in various colors and patterns.',
+  39.99,
+  'accessories',
+  'scarves',
+  'Winter Warmth',
+  'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Red', 'Blue', 'Gray', 'Beige'],
+  50,
+  true,
+  29.99,
+  4.1,
+  12,
+  ARRAY['wool', 'winter', 'scarf', 'warm', 'soft']
+),
+(
+  'Canvas Backpack',
+  'Durable canvas backpack perfect for school, work, or travel. Multiple compartments for organization.',
+  89.99,
+  'accessories',
+  'bags',
+  'Adventure Co.',
+  'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Khaki', 'Black', 'Navy', 'Forest Green'],
+  35,
+  false,
+  NULL,
+  4.5,
+  28,
+  ARRAY['backpack', 'canvas', 'durable', 'travel', 'school']
+),
+(
+  'Statement Necklace',
+  'Bold statement necklace to elevate any outfit. Made with high-quality materials.',
+  79.99,
+  'accessories',
+  'jewelry',
+  'Glamour Co.',
+  'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=600&fit=crop',
+  ARRAY['One Size'],
+  ARRAY['Gold', 'Silver', 'Rose Gold'],
+  15,
+  true,
+  59.99,
+  4.6,
+  19,
+  ARRAY['necklace', 'statement', 'jewelry', 'bold', 'elegant']
+);
+
+-- Re-enable RLS for products
+ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
+
+-- Verify the data was inserted
+SELECT COUNT(*) as total_products FROM public.products;
+SELECT category, COUNT(*) as count FROM public.products GROUP BY category;

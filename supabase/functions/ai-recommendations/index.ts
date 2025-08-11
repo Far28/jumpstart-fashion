@@ -1,7 +1,19 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+// @ts-ignore: Deno standard library import
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+// @ts-ignore: Supabase client import via ESM
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
+// Type declarations for Deno runtime
+declare global {
+  const Deno: {
+    env: {
+      get(key: string): string | undefined;
+    };
+  };
+}
+
+// Environment variables
 const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -11,7 +23,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-serve(async (req) => {
+serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -19,6 +31,11 @@ serve(async (req) => {
 
   try {
     const { userId, preferences, category, limit = 5 } = await req.json();
+
+    // Check for required environment variables
+    if (!openAIApiKey) {
+      throw new Error('OpenAI API key is not configured');
+    }
 
     // Initialize Supabase client
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -50,7 +67,7 @@ serve(async (req) => {
     - Category Interest: ${category || 'All categories'}
     
     Available Products:
-    ${products?.map(p => `
+    ${products?.map((p: any) => `
     - ID: ${p.id}
     - Name: ${p.name}
     - Category: ${p.category}
@@ -112,7 +129,7 @@ serve(async (req) => {
 
     // Sort products by recommendation order
     const sortedProducts = recommendedIds
-      .map((id: string) => recommendedProducts?.find(p => p.id === id))
+      .map((id: string) => recommendedProducts?.find((p: any) => p.id === id))
       .filter(Boolean);
 
     console.log(`Generated ${sortedProducts.length} recommendations for user ${userId}`);
@@ -129,11 +146,11 @@ serve(async (req) => {
       }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error in ai-recommendations function:', error);
     return new Response(
       JSON.stringify({ 
-        error: error.message,
+        error: error?.message || 'An unexpected error occurred',
         recommendations: [],
         total: 0
       }),

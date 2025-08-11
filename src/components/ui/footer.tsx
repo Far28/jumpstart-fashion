@@ -45,6 +45,7 @@ export const Footer = () => {
                 JumpStart
               </h2>
               <p className="text-primary-foreground/80 leading-relaxed">
+                National fashion retailer with 750+ stores nationwide. 
                 Redefining fashion retail with AI-powered insights and curated 
                 collections that speak to your unique style.
               </p>
