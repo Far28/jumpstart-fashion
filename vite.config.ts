@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/jumpstart-fashion/', // ← Add this line (replace with YOUR repo name)
+  base: '/jumpstart-fashion/',
   server: {
     host: "::",
     port: 8080,
