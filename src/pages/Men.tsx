@@ -37,6 +37,12 @@ export default function Men() {
     'underwear', 'shoes', 'accessories', 'watches'
   ];
 
+  // Helper function to get correct image path
+  const getImageUrl = (imageName: string) => {
+    const base = import.meta.env.BASE_URL || '/';
+    return `${base}images/${imageName}`;
+  };
+
   // Sample men's products with diverse names and categories
   const sampleProducts: Product[] = [
     // Shirts
@@ -46,7 +52,7 @@ export default function Men() {
       description: 'Classic oxford shirt with refined tailoring',
       price: 129,
       is_sale: false,
-      image_url: '/images/Oxford Button-Down Shirt.jpg',
+      image_url: getImageUrl('Oxford Button-Down Shirt.jpg'),
       rating: 4.7,
       review_count: 34,
       brand: 'HERITAGE CLOTHIERS',
@@ -60,7 +66,7 @@ export default function Men() {
       price: 89,
       sale_price: 69,
       is_sale: true,
-      image_url: '/images/Linen Weekend Shirt.jpg',
+      image_url: getImageUrl('Linen Weekend Shirt.jpg'),
       rating: 4.5,
       review_count: 28,
       brand: 'COASTAL STYLE',
@@ -74,7 +80,7 @@ export default function Men() {
       description: 'Versatile chinos with comfortable stretch fabric',
       price: 159,
       is_sale: false,
-      image_url: '/images/Stretch Chino Trousers.jpg',
+      image_url: getImageUrl('Stretch Chino Trousers.jpg'),
       rating: 4.6,
       review_count: 42,
       brand: 'MODERN FIT',
@@ -87,7 +93,7 @@ export default function Men() {
       description: 'Contemporary jeans with perfect fit',
       price: 179,
       is_sale: false,
-      image_url: '/images/Slim-Fit Dark Wash Jeans.jpg',
+      image_url: getImageUrl('Slim-Fit Dark Wash Jeans.jpg'),
       rating: 4.8,
       review_count: 56,
       brand: 'DENIM MASTERS',
@@ -102,7 +108,7 @@ export default function Men() {
       price: 899,
       sale_price: 719,
       is_sale: true,
-      image_url: '/images/Navy Wool Business Suit.jpg',
+      image_url: getImageUrl('Navy Wool Business Suit.jpg'),
       rating: 4.9,
       review_count: 23,
       brand: 'EXECUTIVE STYLE',
@@ -116,7 +122,7 @@ export default function Men() {
       description: 'Modern bomber with quilted detailing',
       price: 249,
       is_sale: false,
-      image_url: '/images/Quilted Bomber Jacket.jpg',
+      image_url: getImageUrl('Quilted Bomber Jacket.jpg'),
       rating: 4.6,
       review_count: 31,
       brand: 'URBAN LAYER',
@@ -129,7 +135,7 @@ export default function Men() {
       description: 'Classic naval-inspired wool coat',
       price: 379,
       is_sale: false,
-      image_url: '/images/Wool Pea Coat.jpg',
+      image_url: getImageUrl('Wool Pea Coat.jpg'),
       rating: 4.8,
       review_count: 19,
       brand: 'NAVAL HERITAGE',
@@ -143,7 +149,7 @@ export default function Men() {
       description: 'Handcrafted leather oxfords for formal occasions',
       price: 299,
       is_sale: false,
-      image_url: '/images/Leather Dress Oxfords.jpg',
+      image_url: getImageUrl('Leather Dress Oxfords.jpg'),
       rating: 4.7,
       review_count: 38,
       brand: 'GENTLEMAN SHOES',
@@ -157,7 +163,7 @@ export default function Men() {
       price: 119,
       sale_price: 89,
       is_sale: true,
-      image_url: '/images/Canvas High-Top Sneakers.jpg',
+      image_url: getImageUrl('Canvas High-Top Sneakers.jpg'),
       rating: 4.4,
       review_count: 67,
       brand: 'STREET CLASSIC',
@@ -171,7 +177,7 @@ export default function Men() {
       description: 'Professional messenger bag in genuine leather',
       price: 225,
       is_sale: false,
-      image_url: '/images/Leather Messenger Bag.jpg',
+      image_url: getImageUrl('Leather Messenger Bag.jpg'),
       rating: 4.8,
       review_count: 26,
       brand: 'WORK GEAR',
@@ -185,7 +191,7 @@ export default function Men() {
       description: 'Clean design watch with stainless steel band',
       price: 189,
       is_sale: false,
-      image_url: '/images/Minimalist Steel Watch.jpg',
+      image_url: getImageUrl('Minimalist Steel Watch.jpg'),
       rating: 4.6,
       review_count: 44,
       brand: 'TIME PIECE',
@@ -199,7 +205,7 @@ export default function Men() {
       price: 149,
       sale_price: 119,
       is_sale: true,
-      image_url: '/images/Vintage Leather Strap Watch.jpg',
+      image_url: getImageUrl('Vintage Leather Strap Watch.jpg'),
       rating: 4.5,
       review_count: 33,
       brand: 'VINTAGE TIME',

@@ -37,6 +37,12 @@ export default function Accessories() {
     'scarves', 'belts', 'wallets', 'tech'
   ];
 
+  // Helper function to get correct image path
+  const getImageUrl = (imageName: string) => {
+    const base = import.meta.env.BASE_URL || '/';
+    return `${base}images/${imageName}`;
+  };
+
   // Sample accessories products with diverse names and categories
   const sampleProducts: Product[] = [
     // Bags
@@ -46,7 +52,7 @@ export default function Accessories() {
       description: 'Handcrafted leather satchel with brass hardware',
       price: 289,
       is_sale: false,
-      image_url: '/images/Vintage Leather Satchel.jpg',
+      image_url: getImageUrl('Vintage Leather Satchel.jpg'),
       rating: 4.8,
       review_count: 27,
       brand: 'HERITAGE BAGS',
@@ -60,7 +66,7 @@ export default function Accessories() {
       price: 149,
       sale_price: 119,
       is_sale: true,
-      image_url: '/images/Canvas Weekender Bag.jpg',
+      image_url: getImageUrl('Canvas Weekender Bag.jpg'),
       rating: 4.6,
       review_count: 34,
       brand: 'TRAVEL ESSENTIALS',
@@ -74,7 +80,7 @@ export default function Accessories() {
       description: 'Classic signet ring in polished sterling silver',
       price: 179,
       is_sale: false,
-      image_url: '/placeholder.svg',
+      image_url: getImageUrl('Sterling Silver Signet Ring.jpg'),
       rating: 4.7,
       review_count: 22,
       brand: 'SILVER CRAFT',
@@ -88,7 +94,7 @@ export default function Accessories() {
       price: 89,
       sale_price: 69,
       is_sale: true,
-      image_url: '/images/Beaded Charm Bracelet.jpg',
+      image_url: getImageUrl('Beaded Charm Bracelet.jpg'),
       rating: 4.5,
       review_count: 41,
       brand: 'ARTISAN JEWELRY',
@@ -102,7 +108,7 @@ export default function Accessories() {
       description: 'Elegant watch with rose gold mesh band',
       price: 245,
       is_sale: false,
-      image_url: '/images/Rose Gold Mesh Watch.jpg',
+      image_url: getImageUrl('Rose Gold Mesh Watch.jpg'),
       rating: 4.8,
       review_count: 33,
       brand: 'LUXE TIME',
@@ -116,7 +122,7 @@ export default function Accessories() {
       price: 199,
       sale_price: 159,
       is_sale: true,
-      image_url: '/images/Smart Fitness Tracker.jpg',
+      image_url: getImageUrl('Smart Fitness Tracker.jpg'),
       rating: 4.4,
       review_count: 89,
       brand: 'TECH WEAR',
@@ -130,7 +136,7 @@ export default function Accessories() {
       description: 'Classic aviator style with polarized lenses',
       price: 159,
       is_sale: false,
-      image_url: '/images/Aviator Polarized Sunglasses.jpg',
+      image_url: getImageUrl('Aviator Polarized Sunglasses.jpg'),
       rating: 4.7,
       review_count: 28,
       brand: 'SKY VISION',
@@ -144,7 +150,7 @@ export default function Accessories() {
       price: 129,
       sale_price: 99,
       is_sale: true,
-      image_url: '/images/Oversized Cat-Eye Frames.jpg',
+      image_url: getImageUrl('Oversized Cat-Eye Frames.jpg'),
       rating: 4.5,
       review_count: 36,
       brand: 'FASHION EYES',
@@ -158,7 +164,7 @@ export default function Accessories() {
       description: 'Stylish fedora with classic wide brim',
       price: 89,
       is_sale: false,
-      image_url: '/images/Wide-Brim Fedora Hat.jpg',
+      image_url: getImageUrl('Wide-Brim Fedora Hat.jpg'),
       rating: 4.6,
       review_count: 19,
       brand: 'HAT COMPANY',
@@ -172,7 +178,7 @@ export default function Accessories() {
       description: 'Luxurious cashmere blend scarf in neutral tones',
       price: 125,
       is_sale: false,
-      image_url: '/images/Cashmere Blend Winter Scarf.jpg',
+      image_url: getImageUrl('Cashmere Blend Winter Scarf.jpg'),
       rating: 4.8,
       review_count: 25,
       brand: 'WINTER WARMTH',
@@ -187,7 +193,7 @@ export default function Accessories() {
       price: 79,
       sale_price: 59,
       is_sale: true,
-      image_url: '/images/Genuine Leather Belt.jpg',
+      image_url: getImageUrl('Genuine Leather Belt.jpg'),
       rating: 4.5,
       review_count: 47,
       brand: 'LEATHER GOODS',
@@ -201,7 +207,7 @@ export default function Accessories() {
       description: 'Slim card holder with RFID protection',
       price: 49,
       is_sale: false,
-      image_url: '/images/Minimalist Card Holder.jpg',
+      image_url: getImageUrl('Minimalist Card Holder.jpg'),
       rating: 4.6,
       review_count: 67,
       brand: 'MINIMAL GEAR',
