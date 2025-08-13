@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Navigation } from '@/components/ui/navigation';
 import { ProductCard } from '@/components/ProductCardFinal';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/integrations/supabase/client';
-import { Search, Filter, X } from 'lucide-react';
+import { 
+  SlidersHorizontal, 
+  Grid3X3, 
+  LayoutGrid, 
+  ChevronDown,
+  Filter
+} from 'lucide-react';
 
 interface Product {
   id: string;
@@ -25,17 +27,11 @@ interface Product {
 
 export default function Men() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('name');
-  const [priceRange, setPriceRange] = useState('all');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
-
-  const subcategories = [
-    'shirts', 'pants', 'suits', 'outerwear', 'activewear', 
-    'underwear', 'shoes', 'accessories', 'watches'
-  ];
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('featured');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   // Helper function to get correct image path
   const getImageUrl = (imageName: string) => {
@@ -49,7 +45,7 @@ export default function Men() {
     return `${base}images/${cleanImageName}`;
   };
 
-  // Sample men's products with diverse names and categories
+  // Sample men's products with working Unsplash images
   const sampleProducts: Product[] = [
     // Shirts
     {
@@ -58,7 +54,7 @@ export default function Men() {
       description: 'Classic oxford shirt with refined tailoring',
       price: 129,
       is_sale: false,
-      image_url: getImageUrl('Oxford Button-Down Shirt.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400&h=400&fit=crop',
       rating: 4.7,
       review_count: 34,
       brand: 'HERITAGE CLOTHIERS',
@@ -72,7 +68,7 @@ export default function Men() {
       price: 89,
       sale_price: 69,
       is_sale: true,
-      image_url: getImageUrl('Linen Weekend Shirt.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=400&fit=crop',
       rating: 4.5,
       review_count: 28,
       brand: 'COASTAL STYLE',
@@ -86,7 +82,7 @@ export default function Men() {
       description: 'Versatile chinos with comfortable stretch fabric',
       price: 159,
       is_sale: false,
-      image_url: getImageUrl('Stretch Chino Trousers.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=400&fit=crop',
       rating: 4.6,
       review_count: 42,
       brand: 'MODERN FIT',
@@ -99,54 +95,54 @@ export default function Men() {
       description: 'Contemporary jeans with perfect fit',
       price: 179,
       is_sale: false,
-      image_url: getImageUrl('Slim-Fit Dark Wash Jeans.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop',
       rating: 4.8,
       review_count: 56,
       brand: 'DENIM MASTERS',
       subcategory: 'pants',
       tags: ['jeans', 'slim-fit', 'dark-wash']
     },
-    // Suits
-    {
-      id: '550e8400-e29b-41d4-a716-446655440105',
-      name: 'Navy Wool Business Suit',
-      description: 'Sharp business suit in premium wool',
-      price: 899,
-      sale_price: 719,
-      is_sale: true,
-      image_url: getImageUrl('Navy Wool Business Suit.jpg'),
-      rating: 4.9,
-      review_count: 23,
-      brand: 'EXECUTIVE STYLE',
-      subcategory: 'suits',
-      tags: ['navy', 'wool', 'business']
-    },
     // Outerwear
     {
-      id: '550e8400-e29b-41d4-a716-446655440106',
+      id: '550e8400-e29b-41d4-a716-446655440105',
       name: 'Quilted Bomber Jacket',
-      description: 'Modern bomber with quilted detailing',
-      price: 249,
-      is_sale: false,
-      image_url: getImageUrl('Quilted Bomber Jacket.jpg'),
-      rating: 4.6,
-      review_count: 31,
-      brand: 'URBAN LAYER',
+      description: 'Modern bomber with quilted details',
+      price: 245,
+      sale_price: 189,
+      is_sale: true,
+      image_url: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop',
+      rating: 4.7,
+      review_count: 29,
+      brand: 'URBAN EDGE',
       subcategory: 'outerwear',
       tags: ['bomber', 'quilted', 'modern']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440107',
+      id: '550e8400-e29b-41d4-a716-446655440106',
       name: 'Wool Pea Coat',
-      description: 'Classic naval-inspired wool coat',
-      price: 379,
+      description: 'Classic peacoat in navy wool blend',
+      price: 395,
       is_sale: false,
-      image_url: getImageUrl('Wool Pea Coat.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=400&fit=crop',
       rating: 4.8,
-      review_count: 19,
-      brand: 'NAVAL HERITAGE',
+      review_count: 45,
+      brand: 'NAVAL TRADITION',
       subcategory: 'outerwear',
-      tags: ['pea-coat', 'wool', 'naval']
+      tags: ['wool', 'peacoat', 'classic']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440107',
+      name: 'Navy Wool Business Suit',
+      description: 'Professional suit with modern tailoring',
+      price: 795,
+      sale_price: 595,
+      is_sale: true,
+      image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+      rating: 4.9,
+      review_count: 23,
+      brand: 'EXECUTIVE STYLE',
+      subcategory: 'suits',
+      tags: ['suit', 'wool', 'business']
     },
     // Shoes
     {
@@ -155,7 +151,7 @@ export default function Men() {
       description: 'Handcrafted leather oxfords for formal occasions',
       price: 299,
       is_sale: false,
-      image_url: getImageUrl('Leather Dress Oxfords.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop',
       rating: 4.7,
       review_count: 38,
       brand: 'GENTLEMAN SHOES',
@@ -169,7 +165,7 @@ export default function Men() {
       price: 119,
       sale_price: 89,
       is_sale: true,
-      image_url: getImageUrl('Canvas High-Top Sneakers.jpg'),
+      image_url: 'https://images.unsplash.com/photo-1560072663-d0b6b0e1b6e0?w=400&h=400&fit=crop',
       rating: 4.4,
       review_count: 67,
       brand: 'STREET CLASSIC',
@@ -180,345 +176,254 @@ export default function Men() {
     {
       id: '550e8400-e29b-41d4-a716-446655440110',
       name: 'Leather Messenger Bag',
-      description: 'Professional messenger bag in genuine leather',
-      price: 225,
-      is_sale: false,
-      image_url: getImageUrl('Leather Messenger Bag.jpg'),
-      rating: 4.8,
-      review_count: 26,
-      brand: 'WORK GEAR',
-      subcategory: 'accessories',
+      description: 'Professional messenger bag in cognac leather',
+      price: 285,
+      sale_price: 199,
+      is_sale: true,
+      image_url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
+      rating: 4.6,
+      review_count: 31,
+      brand: 'EXECUTIVE CARRY',
+      subcategory: 'bags',
       tags: ['messenger', 'leather', 'professional']
     },
-    // Watches
     {
       id: '550e8400-e29b-41d4-a716-446655440111',
       name: 'Minimalist Steel Watch',
-      description: 'Clean design watch with stainless steel band',
-      price: 189,
+      description: 'Clean lines with Swiss movement',
+      price: 425,
       is_sale: false,
-      image_url: getImageUrl('Minimalist Steel Watch.jpg'),
-      rating: 4.6,
+      image_url: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop',
+      rating: 4.8,
       review_count: 44,
-      brand: 'TIME PIECE',
+      brand: 'TIME PRECISE',
       subcategory: 'watches',
-      tags: ['minimalist', 'steel', 'classic']
+      tags: ['watch', 'steel', 'minimalist']
     },
     {
       id: '550e8400-e29b-41d4-a716-446655440112',
       name: 'Vintage Leather Strap Watch',
-      description: 'Retro-inspired watch with aged leather strap',
-      price: 149,
-      sale_price: 119,
-      is_sale: true,
-      image_url: getImageUrl('Vintage Leather Strap Watch.jpg'),
+      description: 'Classic timepiece with aged leather strap',
+      price: 189,
+      is_sale: false,
+      image_url: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=400&h=400&fit=crop',
       rating: 4.5,
-      review_count: 33,
-      brand: 'VINTAGE TIME',
+      review_count: 39,
+      brand: 'HERITAGE TIME',
       subcategory: 'watches',
-      tags: ['vintage', 'leather-strap', 'retro']
+      tags: ['vintage', 'leather', 'classic']
     }
   ];
 
   useEffect(() => {
+    const fetchProducts = () => {
+      try {
+        console.log('Men Database data:', sampleProducts);
+        console.log('Men Data length:', sampleProducts.length);
+        
+        setProducts(sampleProducts);
+        setFilteredProducts(sampleProducts.slice(0, 12));
+        console.log('Men Final products to display:', sampleProducts.slice(0, 12));
+      } catch (error) {
+        console.error('Error fetching men products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
-  }, [sortBy, priceRange, selectedSubcategory, searchTerm]);
+  }, []);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      let query = supabase
-        .from('products')
-        .select('*')
-        .eq('category', 'men');
+  // Filter products by category
+  useEffect(() => {
+    let filtered = products;
 
-      // Apply filters
-      if (selectedSubcategory !== 'all') {
-        query = query.eq('subcategory', selectedSubcategory);
-      }
-
-      if (priceRange !== 'all') {
-        const [min, max] = priceRange.split('-').map(Number);
-        if (max) {
-          query = query.gte('price', min).lte('price', max);
-        } else {
-          query = query.gte('price', min);
-        }
-      }
-
-      if (searchTerm) {
-        query = query.or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,brand.ilike.%${searchTerm}%`);
-      }
-
-      // Apply sorting
-      switch (sortBy) {
-        case 'price_low':
-          query = query.order('price', { ascending: true });
-          break;
-        case 'price_high':
-          query = query.order('price', { ascending: false });
-          break;
-        case 'rating':
-          query = query.order('rating', { ascending: false });
-          break;
-        case 'newest':
-          query = query.order('created_at', { ascending: false });
-          break;
-        default:
-          query = query.order('name', { ascending: true });
-      }
-
-      const { data, error } = await query;
-      if (error) throw error;
-
-      console.log('Men Database data:', data); // Debug log
-      console.log('Men Data length:', data?.length); // Debug log
-
-      // Force use sample data for now (to debug)
-      let productsToDisplay = sampleProducts;
-
-      // Apply client-side filtering to sample data
-      productsToDisplay = sampleProducts.filter(product => {
-        // Filter by subcategory
-        if (selectedSubcategory !== 'all' && product.subcategory !== selectedSubcategory) {
-          return false;
-        }
-
-        // Filter by price range
-        if (priceRange !== 'all') {
-          const [min, max] = priceRange.split('-').map(Number);
-          if (max && (product.price < min || product.price > max)) {
-            return false;
-          } else if (!max && product.price < min) {
-            return false;
-          }
-        }
-
-        // Filter by search term
-        if (searchTerm) {
-          const searchLower = searchTerm.toLowerCase();
-          return (
-            product.name.toLowerCase().includes(searchLower) ||
-            product.description?.toLowerCase().includes(searchLower) ||
-            product.brand?.toLowerCase().includes(searchLower)
-          );
-        }
-
-        return true;
-      });
-
-      // Apply client-side sorting to sample data
-      productsToDisplay.sort((a, b) => {
-        switch (sortBy) {
-          case 'price_low':
-            return a.price - b.price;
-          case 'price_high':
-            return b.price - a.price;
-          case 'rating':
-            return b.rating - a.rating;
-          case 'newest':
-            return 0; // No created_at for sample data
-          default:
-            return a.name.localeCompare(b.name);
-        }
-      });
-
-      console.log('Men Final products to display:', productsToDisplay); // Debug log
-      setProducts(productsToDisplay);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      // Fallback to sample data on error
-      setProducts(sampleProducts);
-    } finally {
-      setLoading(false);
+    if (selectedCategory !== 'all') {
+      filtered = products.filter(product => 
+        product.subcategory === selectedCategory
+      );
     }
-  };
 
-  const clearFilters = () => {
-    setSearchTerm('');
-    setSortBy('name');
-    setPriceRange('all');
-    setSelectedSubcategory('all');
-  };
+    // Sort products
+    if (sortBy === 'price-low') {
+      filtered = [...filtered].sort((a, b) => {
+        const priceA = a.is_sale && a.sale_price ? a.sale_price : a.price;
+        const priceB = b.is_sale && b.sale_price ? b.sale_price : b.price;
+        return priceA - priceB;
+      });
+    } else if (sortBy === 'price-high') {
+      filtered = [...filtered].sort((a, b) => {
+        const priceA = a.is_sale && a.sale_price ? a.sale_price : a.price;
+        const priceB = b.is_sale && b.sale_price ? b.sale_price : b.price;
+        return priceB - priceA;
+      });
+    } else if (sortBy === 'rating') {
+      filtered = [...filtered].sort((a, b) => b.rating - a.rating);
+    }
 
-  const activeFiltersCount = [
-    searchTerm,
-    sortBy !== 'name' ? sortBy : null,
-    priceRange !== 'all' ? priceRange : null,
-    selectedSubcategory !== 'all' ? selectedSubcategory : null,
-  ].filter(Boolean).length;
+    setFilteredProducts(filtered);
+  }, [products, selectedCategory, sortBy]);
+
+  const categories = [
+    { id: 'all', name: 'All Items', count: products.length },
+    { id: 'shirts', name: 'Shirts', count: products.filter(p => p.subcategory === 'shirts').length },
+    { id: 'pants', name: 'Pants', count: products.filter(p => p.subcategory === 'pants').length },
+    { id: 'outerwear', name: 'Outerwear', count: products.filter(p => p.subcategory === 'outerwear').length },
+    { id: 'shoes', name: 'Shoes', count: products.filter(p => p.subcategory === 'shoes').length },
+    { id: 'suits', name: 'Suits', count: products.filter(p => p.subcategory === 'suits').length },
+    { id: 'bags', name: 'Bags', count: products.filter(p => p.subcategory === 'bags').length },
+    { id: 'watches', name: 'Watches', count: products.filter(p => p.subcategory === 'watches').length }
+  ];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading men's collection...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navigation />
-      
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold hero-text mb-4">Men's Collection</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore our premium men's fashion collection, featuring contemporary styles and timeless classics.
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Men's Collection
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+              Discover timeless pieces and contemporary styles crafted for the modern gentleman
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              placeholder="Search men's products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar Filters */}
+          <div className="lg:w-1/4">
+            <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
+              <div className="flex items-center gap-2 mb-6">
+                <Filter className="h-5 w-5" />
+                <h2 className="text-lg font-semibold">Filters</h2>
+              </div>
+
+              {/* Categories */}
+              <div className="mb-6">
+                <h3 className="font-medium text-gray-900 mb-3">Categories</h3>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                        selectedCategory === category.id
+                          ? 'bg-black text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span>{category.name}</span>
+                        <Badge variant="secondary" className="ml-2">
+                          {category.count}
+                        </Badge>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Filter Toggle */}
-          <div className="flex justify-center">
-            <Button
-              variant="outline"
-              onClick={() => setShowFilters(!showFilters)}
-              className="gap-2"
-            >
-              <Filter className="h-4 w-4" />
-              Filters
-              {activeFiltersCount > 0 && (
-                <Badge variant="secondary" className="ml-1">
-                  {activeFiltersCount}
-                </Badge>
-              )}
-            </Button>
-          </div>
+          {/* Main Content */}
+          <div className="lg:w-3/4">
+            {/* Toolbar */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {categories.find(c => c.id === selectedCategory)?.name || 'All Items'}
+                </h2>
+                <p className="text-gray-600">
+                  {filteredProducts.length} products
+                </p>
+              </div>
 
-          {/* Filters */}
-          {showFilters && (
-            <div className="card-fashion p-6 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Sort By</label>
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="name">Name</SelectItem>
-                      <SelectItem value="price_low">Price: Low to High</SelectItem>
-                      <SelectItem value="price_high">Price: High to Low</SelectItem>
-                      <SelectItem value="rating">Rating</SelectItem>
-                      <SelectItem value="newest">Newest</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Category</label>
-                  <Select value={selectedSubcategory} onValueChange={setSelectedSubcategory}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Categories</SelectItem>
-                      {subcategories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Price Range</label>
-                  <Select value={priceRange} onValueChange={setPriceRange}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Prices</SelectItem>
-                      <SelectItem value="0-25">Under $25</SelectItem>
-                      <SelectItem value="25-50">$25 - $50</SelectItem>
-                      <SelectItem value="50-100">$50 - $100</SelectItem>
-                      <SelectItem value="100-200">$100 - $200</SelectItem>
-                      <SelectItem value="200">$200+</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="flex items-end">
-                  <Button
-                    variant="outline"
-                    onClick={clearFilters}
-                    className="w-full gap-2"
+              <div className="flex items-center gap-4">
+                {/* Sort Dropdown */}
+                <div className="relative">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-black"
                   >
-                    <X className="h-4 w-4" />
-                    Clear All
-                  </Button>
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                  </select>
+                  <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 pointer-events-none" />
                 </div>
-              </div>
-            </div>
-          )}
-        </div>
 
-        {/* Products Grid */}
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 rounded-xl h-80 mb-4"></div>
-                <div className="space-y-3">
-                  <div className="bg-gray-200 h-4 rounded"></div>
-                  <div className="bg-gray-200 h-4 rounded w-3/4"></div>
-                  <div className="bg-gray-200 h-6 rounded w-1/2"></div>
+                {/* View Mode Toggle */}
+                <div className="flex bg-gray-100 rounded-md p-1">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-2 rounded-md transition-colors ${
+                      viewMode === 'grid'
+                        ? 'bg-white shadow-sm text-black'
+                        : 'text-gray-600 hover:text-black'
+                    }`}
+                  >
+                    <Grid3X3 className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-2 rounded-md transition-colors ${
+                      viewMode === 'list'
+                        ? 'bg-white shadow-sm text-black'
+                        : 'text-gray-600 hover:text-black'
+                    }`}
+                  >
+                    <LayoutGrid className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-        ) : products.length > 0 ? (
-          <>
-            <div className="flex justify-between items-center mb-6">
-              <p className="text-gray-600">
-                Showing {products.length} product{products.length !== 1 ? 's' : ''}
-              </p>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>Sort by:</span>
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-auto border-0 bg-transparent">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="name">Name</SelectItem>
-                    <SelectItem value="price_low">Price: Low to High</SelectItem>
-                    <SelectItem value="price_high">Price: High to Low</SelectItem>
-                    <SelectItem value="rating">Rating</SelectItem>
-                    <SelectItem value="newest">Newest</SelectItem>
-                  </SelectContent>
-                </Select>
+            </div>
+
+            {/* Products Grid */}
+            {filteredProducts.length > 0 ? (
+              <div className={`grid gap-6 ${
+                viewMode === 'grid' 
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                  : 'grid-cols-1'
+              }`}>
+                {filteredProducts.map((product) => (
+                  <ProductCard 
+                    key={product.id} 
+                    product={product} 
+                    showFullDescription={viewMode === 'list'}
+                  />
+                ))}
               </div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} showFullDescription={false} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-16">
-            <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-12 h-12 text-gray-400" />
+            ) : (
+              <div className="text-center py-12">
+                <div className="text-gray-400 mb-4">
+                  <SlidersHorizontal className="h-16 w-16 mx-auto" />
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No products found
+                </h3>
+                <p className="text-gray-600">
+                  Try adjusting your filters to see more results.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-              <p className="text-gray-600 mb-6">
-                We couldn't find any products matching your criteria. Try adjusting your filters.
-              </p>
-              <Button onClick={clearFilters} size="lg">
-                Clear All Filters
-              </Button>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
