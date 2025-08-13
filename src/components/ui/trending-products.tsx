@@ -11,11 +11,10 @@ export const TrendingProducts = () => {
     // Remove any leading slashes or 'images/' prefix from imageName
     const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
     
-    const base = import.meta.env.BASE_URL || '/';
+    const base = import.meta.env.BASE_URL;
     
-    // Ensure base ends with slash and construct proper path
-    const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
-    const finalUrl = `${baseWithSlash}images/${cleanImageName}`;
+    // Simple and reliable path construction
+    const finalUrl = `${base}images/${cleanImageName}`;
     
     return finalUrl;
   };

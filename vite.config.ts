@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/jumpstart-fashion', // Match the GitHub repository name exactly
+  base: '/jumpstart-fashion/', // Add trailing slash for proper asset handling
   server: {
     host: "::",
     port: 8080,
@@ -22,5 +22,6 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[ext]'
       }
     }
-  }
+  },
+  publicDir: 'public' // Ensure public directory is properly served
 });

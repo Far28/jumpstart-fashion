@@ -44,23 +44,18 @@ const getImageUrl = (imageName: string) => {
   if (!imageName) return '/placeholder.svg';
   if (imageName.startsWith('http')) return imageName; // Already a full URL
   
-  // Remove any leading slashes or 'images/' prefix from imageName
+  // Clean the image name
   const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
   
-  const base = import.meta.env.BASE_URL || '/';
-  
-  // Ensure base ends with slash and construct proper path
-  const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
-  const finalUrl = `${baseWithSlash}images/${cleanImageName}`;
+  // Simple and reliable path construction
+  const base = import.meta.env.BASE_URL;
+  const finalUrl = `${base}images/${cleanImageName}`;
   
   console.log('getImageUrl Debug:', {
     input: imageName,
     cleanImageName,
     base,
-    baseWithSlash,
-    finalUrl,
-    isDev: import.meta.env.DEV,
-    currentLocation: window.location.href
+    finalUrl
   });
   
   return finalUrl;
