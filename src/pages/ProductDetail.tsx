@@ -49,18 +49,15 @@ const getImageUrl = (imageName: string) => {
   
   const base = import.meta.env.BASE_URL || '/';
   
-  // For development, check if we're running locally
-  const isDev = import.meta.env.DEV;
-  const finalUrl = isDev 
-    ? `/images/${cleanImageName}` // Development: direct path
-    : `${base}images/${cleanImageName}`; // Production: with base URL
+  // Always use base URL - let Vite handle dev vs prod
+  const finalUrl = `${base}images/${cleanImageName}`;
   
   console.log('getImageUrl Debug:', {
     input: imageName,
     cleanImageName,
     base,
-    isDev,
     finalUrl,
+    isDev: import.meta.env.DEV,
     currentLocation: window.location.href
   });
   

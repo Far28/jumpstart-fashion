@@ -47,11 +47,8 @@ export default function Men() {
     
     const base = import.meta.env.BASE_URL || '/';
     
-    // For development, check if we're running locally
-    const isDev = import.meta.env.DEV;
-    const finalUrl = isDev 
-      ? `/images/${cleanImageName}` // Development: direct path
-      : `${base}images/${cleanImageName}`; // Production: with base URL
+    // Always use base URL - let Vite handle dev vs prod
+    const finalUrl = `${base}images/${cleanImageName}`;
     
     return finalUrl;
   };
