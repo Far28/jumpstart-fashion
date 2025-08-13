@@ -49,13 +49,15 @@ const getImageUrl = (imageName: string) => {
   
   const base = import.meta.env.BASE_URL || '/';
   
-  // Always use base URL - let Vite handle dev vs prod
-  const finalUrl = `${base}images/${cleanImageName}`;
+  // Ensure base ends with slash and construct proper path
+  const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
+  const finalUrl = `${baseWithSlash}images/${cleanImageName}`;
   
   console.log('getImageUrl Debug:', {
     input: imageName,
     cleanImageName,
     base,
+    baseWithSlash,
     finalUrl,
     isDev: import.meta.env.DEV,
     currentLocation: window.location.href

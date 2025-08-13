@@ -13,8 +13,9 @@ export const TrendingProducts = () => {
     
     const base = import.meta.env.BASE_URL || '/';
     
-    // Always use base URL - let Vite handle dev vs prod
-    const finalUrl = `${base}images/${cleanImageName}`;
+    // Ensure base ends with slash and construct proper path
+    const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
+    const finalUrl = `${baseWithSlash}images/${cleanImageName}`;
     
     return finalUrl;
   };
