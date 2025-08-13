@@ -36,6 +36,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
 
+  // Helper function to get correct image path
+  const getImageUrl = (imageName: string) => {
+    if (!imageName) return '/placeholder.svg';
+    if (imageName.startsWith('http')) return imageName; // Already a full URL
+    const base = import.meta.env.BASE_URL || '/';
+    return `${base}images/${imageName}`;
+  };
+
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -89,7 +97,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Product Image */}
           <div className="relative overflow-hidden rounded-t-xl">
             <img
-              src={product.image_url || '/placeholder.svg'}
+              src={getImageUrl(product.image_url) || '/placeholder.svg'}
               alt={product.name}
               className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
             />
