@@ -39,8 +39,14 @@ export default function Men() {
 
   // Helper function to get correct image path
   const getImageUrl = (imageName: string) => {
+    if (!imageName) return '/placeholder.svg';
+    if (imageName.startsWith('http')) return imageName; // Already a full URL
+    
+    // Remove any leading slashes or 'images/' prefix from imageName
+    const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
+    
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${imageName}`;
+    return `${base}images/${cleanImageName}`;
   };
 
   // Sample men's products with diverse names and categories
