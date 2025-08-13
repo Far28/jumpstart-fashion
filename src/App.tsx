@@ -31,7 +31,7 @@ const App = () => (
         <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/jumpstart-fashion">
+        <BrowserRouter basename="/jumpstartfashion">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/women" element={<Women />} />

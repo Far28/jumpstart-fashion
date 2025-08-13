@@ -51,7 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
     
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${cleanImageName}`;
+    return `${base}/images/${cleanImageName}`;
   };
 
   const handleAddToCart = async (e: React.MouseEvent) => {

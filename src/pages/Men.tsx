@@ -46,291 +46,247 @@ export default function Men() {
     const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
     
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${cleanImageName}`;
+    
+    // For development, check if we're running locally
+    const isDev = import.meta.env.DEV;
+    const finalUrl = isDev 
+      ? `/images/${cleanImageName}` // Development: direct path
+      : `${base}images/${cleanImageName}`; // Production: with base URL
+    
+    return finalUrl;
   };
 
-  // Sample men's products with diverse names and categories
+  // Sample men's products with exact image names from public/images folder
   const sampleProducts: Product[] = [
-    // Shirts
     {
-      id: '550e8400-e29b-41d4-a716-446655440101',
+      id: '550e8400-e29b-41d4-a716-446655440050',
       name: 'Oxford Button-Down Shirt',
-      description: 'Classic oxford shirt with refined tailoring',
-      price: 129,
+      description: 'Classic Oxford cotton button-down shirt',
+      price: 89,
       is_sale: false,
       image_url: getImageUrl('Oxford Button-Down Shirt.jpg'),
-      rating: 4.7,
-      review_count: 34,
-      brand: 'HERITAGE CLOTHIERS',
-      subcategory: 'shirts',
-      tags: ['oxford', 'classic', 'button-down']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440102',
-      name: 'Linen Weekend Shirt',
-      description: 'Breathable linen shirt for relaxed occasions',
-      price: 89,
-      sale_price: 69,
-      is_sale: true,
-      image_url: getImageUrl('Linen Weekend Shirt.jpg'),
       rating: 4.5,
-      review_count: 28,
-      brand: 'COASTAL STYLE',
+      review_count: 67,
+      brand: 'CLASSIC FIT',
       subcategory: 'shirts',
-      tags: ['linen', 'casual', 'breathable']
+      tags: ['oxford', 'cotton', 'formal']
     },
-    // Pants
     {
-      id: '550e8400-e29b-41d4-a716-446655440103',
+      id: '550e8400-e29b-41d4-a716-446655440051',
+      name: 'Linen Weekend Shirt',
+      description: 'Relaxed linen shirt for casual weekends',
+      price: 125,
+      is_sale: false,
+      image_url: getImageUrl('Linen Weekend Shirt.jpg'),
+      rating: 4.3,
+      review_count: 34,
+      brand: 'COASTAL CASUAL',
+      subcategory: 'shirts',
+      tags: ['linen', 'casual', 'summer']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440053',
       name: 'Stretch Chino Trousers',
-      description: 'Versatile chinos with comfortable stretch fabric',
-      price: 159,
+      description: 'Comfortable stretch chino pants',
+      price: 95,
       is_sale: false,
       image_url: getImageUrl('Stretch Chino Trousers.jpg'),
       rating: 4.6,
-      review_count: 42,
-      brand: 'MODERN FIT',
+      review_count: 45,
+      brand: 'FLEX FIT',
       subcategory: 'pants',
-      tags: ['chino', 'stretch', 'versatile']
+      tags: ['chino', 'stretch', 'casual']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440104',
+      id: '550e8400-e29b-41d4-a716-446655440054',
+      name: 'Slim Fit Chino Pants',
+      description: 'Navy blue slim fit chino pants',
+      price: 85,
+      is_sale: false,
+      image_url: getImageUrl('Slim Fit Chino Pants in navy blue.jpg'),
+      rating: 4.5,
+      review_count: 52,
+      brand: 'TAILORED FIT',
+      subcategory: 'pants',
+      tags: ['chino', 'slim', 'navy']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440055',
       name: 'Slim-Fit Dark Wash Jeans',
-      description: 'Contemporary jeans with perfect fit',
-      price: 179,
+      description: 'Premium dark wash denim jeans',
+      price: 115,
       is_sale: false,
       image_url: getImageUrl('Slim-Fit Dark Wash Jeans.jpg'),
-      rating: 4.8,
-      review_count: 56,
-      brand: 'DENIM MASTERS',
+      rating: 4.7,
+      review_count: 78,
+      brand: 'DENIM WORKS',
       subcategory: 'pants',
-      tags: ['jeans', 'slim-fit', 'dark-wash']
+      tags: ['jeans', 'slim', 'dark wash']
     },
-    // Suits
     {
-      id: '550e8400-e29b-41d4-a716-446655440105',
-      name: 'Navy Wool Business Suit',
-      description: 'Sharp business suit in premium wool',
-      price: 899,
-      sale_price: 719,
-      is_sale: true,
-      image_url: getImageUrl('Navy Wool Business Suit.jpg'),
-      rating: 4.9,
-      review_count: 23,
-      brand: 'EXECUTIVE STYLE',
-      subcategory: 'suits',
-      tags: ['navy', 'wool', 'business']
-    },
-    // Outerwear
-    {
-      id: '550e8400-e29b-41d4-a716-446655440106',
+      id: '550e8400-e29b-41d4-a716-446655440056',
       name: 'Quilted Bomber Jacket',
-      description: 'Modern bomber with quilted detailing',
-      price: 249,
+      description: 'Modern quilted bomber jacket',
+      price: 185,
       is_sale: false,
       image_url: getImageUrl('Quilted Bomber Jacket.jpg'),
-      rating: 4.6,
-      review_count: 31,
-      brand: 'URBAN LAYER',
+      rating: 4.4,
+      review_count: 29,
+      brand: 'STREET STYLE',
       subcategory: 'outerwear',
-      tags: ['bomber', 'quilted', 'modern']
+      tags: ['bomber', 'quilted', 'casual']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440107',
+      id: '550e8400-e29b-41d4-a716-446655440057',
       name: 'Wool Pea Coat',
-      description: 'Classic naval-inspired wool coat',
-      price: 379,
+      description: 'Classic wool pea coat for winter',
+      price: 298,
       is_sale: false,
       image_url: getImageUrl('Wool Pea Coat.jpg'),
       rating: 4.8,
-      review_count: 19,
-      brand: 'NAVAL HERITAGE',
+      review_count: 41,
+      brand: 'WINTER CLASSIC',
       subcategory: 'outerwear',
-      tags: ['pea-coat', 'wool', 'naval']
+      tags: ['wool', 'pea coat', 'winter']
     },
-    // Shoes
     {
-      id: '550e8400-e29b-41d4-a716-446655440108',
+      id: '550e8400-e29b-41d4-a716-446655440058',
+      name: 'Navy Wool Business Suit',
+      description: 'Professional navy wool business suit',
+      price: 595,
+      is_sale: false,
+      image_url: getImageUrl('Navy Wool Business Suit.jpg'),
+      rating: 4.9,
+      review_count: 18,
+      brand: 'EXECUTIVE',
+      subcategory: 'suits',
+      tags: ['wool', 'navy', 'business']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440059',
       name: 'Leather Dress Oxfords',
-      description: 'Handcrafted leather oxfords for formal occasions',
-      price: 299,
+      description: 'Premium leather Oxford dress shoes',
+      price: 245,
       is_sale: false,
       image_url: getImageUrl('Leather Dress Oxfords.jpg'),
-      rating: 4.7,
-      review_count: 38,
-      brand: 'GENTLEMAN SHOES',
+      rating: 4.6,
+      review_count: 33,
+      brand: 'CLASSIC LEATHER',
       subcategory: 'shoes',
-      tags: ['oxford', 'leather', 'formal']
+      tags: ['leather', 'oxford', 'formal']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440109',
+      id: '550e8400-e29b-41d4-a716-446655440060',
       name: 'Canvas High-Top Sneakers',
-      description: 'Classic canvas sneakers with rubber sole',
-      price: 119,
-      sale_price: 89,
-      is_sale: true,
+      description: 'Classic canvas high-top sneakers',
+      price: 85,
+      is_sale: false,
       image_url: getImageUrl('Canvas High-Top Sneakers.jpg'),
-      rating: 4.4,
+      rating: 4.3,
       review_count: 67,
       brand: 'STREET CLASSIC',
       subcategory: 'shoes',
-      tags: ['canvas', 'high-top', 'casual']
+      tags: ['canvas', 'sneakers', 'casual']
     },
-    // Accessories
     {
-      id: '550e8400-e29b-41d4-a716-446655440110',
+      id: '550e8400-e29b-41d4-a716-446655440061',
       name: 'Leather Messenger Bag',
-      description: 'Professional messenger bag in genuine leather',
-      price: 225,
+      description: 'Professional leather messenger bag',
+      price: 195,
       is_sale: false,
       image_url: getImageUrl('Leather Messenger Bag.jpg'),
-      rating: 4.8,
-      review_count: 26,
-      brand: 'WORK GEAR',
+      rating: 4.7,
+      review_count: 24,
+      brand: 'PROFESSIONAL',
       subcategory: 'accessories',
-      tags: ['messenger', 'leather', 'professional']
+      tags: ['leather', 'messenger', 'business']
     },
-    // Watches
     {
-      id: '550e8400-e29b-41d4-a716-446655440111',
+      id: '550e8400-e29b-41d4-a716-446655440062',
       name: 'Minimalist Steel Watch',
-      description: 'Clean design watch with stainless steel band',
-      price: 189,
+      description: 'Clean minimalist steel watch',
+      price: 155,
       is_sale: false,
       image_url: getImageUrl('Minimalist Steel Watch.jpg'),
-      rating: 4.6,
-      review_count: 44,
-      brand: 'TIME PIECE',
+      rating: 4.5,
+      review_count: 45,
+      brand: 'TIME MINIMAL',
       subcategory: 'watches',
-      tags: ['minimalist', 'steel', 'classic']
+      tags: ['steel', 'minimalist', 'modern']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440112',
+      id: '550e8400-e29b-41d4-a716-446655440063',
       name: 'Vintage Leather Strap Watch',
-      description: 'Retro-inspired watch with aged leather strap',
-      price: 149,
-      sale_price: 119,
-      is_sale: true,
+      description: 'Classic vintage-style leather strap watch',
+      price: 135,
+      is_sale: false,
       image_url: getImageUrl('Vintage Leather Strap Watch.jpg'),
-      rating: 4.5,
-      review_count: 33,
+      rating: 4.4,
+      review_count: 38,
       brand: 'VINTAGE TIME',
       subcategory: 'watches',
-      tags: ['vintage', 'leather-strap', 'retro']
+      tags: ['leather', 'vintage', 'classic']
     }
   ];
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Use the sample men's products directly to show proper products
+        console.log('Loading men products with proper data');
+        setProducts(sampleProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading men products:', error);
+        setProducts(sampleProducts);
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
-  }, [sortBy, priceRange, selectedSubcategory, searchTerm]);
+  }, []);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      let query = supabase
-        .from('products')
-        .select('*')
-        .eq('category', 'men');
+  // Filter and sort products
+  const filteredAndSortedProducts = () => {
+    let filtered = [...products];
 
-      // Apply filters
-      if (selectedSubcategory !== 'all') {
-        query = query.eq('subcategory', selectedSubcategory);
-      }
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.brand?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
 
-      if (priceRange !== 'all') {
-        const [min, max] = priceRange.split('-').map(Number);
-        if (max) {
-          query = query.gte('price', min).lte('price', max);
-        } else {
-          query = query.gte('price', min);
-        }
-      }
+    // Apply subcategory filter
+    if (selectedSubcategory !== 'all') {
+      filtered = filtered.filter(product => product.subcategory === selectedSubcategory);
+    }
 
-      if (searchTerm) {
-        query = query.or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,brand.ilike.%${searchTerm}%`);
-      }
+    // Apply price range filter
+    if (priceRange === 'under-100') {
+      filtered = filtered.filter(product => product.price < 100);
+    } else if (priceRange === '100-200') {
+      filtered = filtered.filter(product => product.price >= 100 && product.price <= 200);
+    } else if (priceRange === '200-300') {
+      filtered = filtered.filter(product => product.price >= 200 && product.price <= 300);
+    } else if (priceRange === 'over-300') {
+      filtered = filtered.filter(product => product.price > 300);
+    }
 
-      // Apply sorting
-      switch (sortBy) {
-        case 'price_low':
-          query = query.order('price', { ascending: true });
-          break;
-        case 'price_high':
-          query = query.order('price', { ascending: false });
-          break;
-        case 'rating':
-          query = query.order('rating', { ascending: false });
-          break;
-        case 'newest':
-          query = query.order('created_at', { ascending: false });
-          break;
-        default:
-          query = query.order('name', { ascending: true });
-      }
-
-      const { data, error } = await query;
-      if (error) throw error;
-
-      console.log('Men Database data:', data); // Debug log
-      console.log('Men Data length:', data?.length); // Debug log
-
-      // Force use sample data for now (to debug)
-      let productsToDisplay = sampleProducts;
-
-      // Apply client-side filtering to sample data
-      productsToDisplay = sampleProducts.filter(product => {
-        // Filter by subcategory
-        if (selectedSubcategory !== 'all' && product.subcategory !== selectedSubcategory) {
-          return false;
-        }
-
-        // Filter by price range
-        if (priceRange !== 'all') {
-          const [min, max] = priceRange.split('-').map(Number);
-          if (max && (product.price < min || product.price > max)) {
-            return false;
-          } else if (!max && product.price < min) {
-            return false;
-          }
-        }
-
-        // Filter by search term
-        if (searchTerm) {
-          const searchLower = searchTerm.toLowerCase();
-          return (
-            product.name.toLowerCase().includes(searchLower) ||
-            product.description?.toLowerCase().includes(searchLower) ||
-            product.brand?.toLowerCase().includes(searchLower)
-          );
-        }
-
-        return true;
-      });
-
-      // Apply client-side sorting to sample data
-      productsToDisplay.sort((a, b) => {
-        switch (sortBy) {
-          case 'price_low':
-            return a.price - b.price;
-          case 'price_high':
-            return b.price - a.price;
-          case 'rating':
-            return b.rating - a.rating;
-          case 'newest':
-            return 0; // No created_at for sample data
-          default:
-            return a.name.localeCompare(b.name);
-        }
-      });
-
-      console.log('Men Final products to display:', productsToDisplay); // Debug log
-      setProducts(productsToDisplay);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      // Fallback to sample data on error
-      setProducts(sampleProducts);
-    } finally {
-      setLoading(false);
+    // Apply sorting
+    switch (sortBy) {
+      case 'price-low':
+        return filtered.sort((a, b) => a.price - b.price);
+      case 'price-high':
+        return filtered.sort((a, b) => b.price - a.price);
+      case 'rating':
+        return filtered.sort((a, b) => b.rating - a.rating);
+      case 'newest':
+        return filtered.reverse();
+      default:
+        return filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
   };
 
@@ -341,87 +297,92 @@ export default function Men() {
     setSelectedSubcategory('all');
   };
 
-  const activeFiltersCount = [
-    searchTerm,
-    sortBy !== 'name' ? sortBy : null,
-    priceRange !== 'all' ? priceRange : null,
-    selectedSubcategory !== 'all' ? selectedSubcategory : null,
-  ].filter(Boolean).length;
+  const hasActiveFilters = searchTerm !== '' || sortBy !== 'name' || priceRange !== 'all' || selectedSubcategory !== 'all';
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold hero-text mb-4">Men's Collection</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore our premium men's fashion collection, featuring contemporary styles and timeless classics.
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Men's Collection</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover our curated selection of men's fashion, from casual essentials to formal wear.
           </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              placeholder="Search men's products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+            {/* Search */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                placeholder="Search men's products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
 
-          {/* Filter Toggle */}
-          <div className="flex justify-center">
-            <Button
-              variant="outline"
-              onClick={() => setShowFilters(!showFilters)}
-              className="gap-2"
-            >
-              <Filter className="h-4 w-4" />
-              Filters
-              {activeFiltersCount > 0 && (
-                <Badge variant="secondary" className="ml-1">
-                  {activeFiltersCount}
-                </Badge>
+            {/* Filters */}
+            <div className="flex flex-wrap gap-4 items-center">
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Name A-Z</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="rating">Highest Rated</SelectItem>
+                  <SelectItem value="newest">Newest</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Button
+                variant="outline"
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center gap-2"
+              >
+                <Filter className="h-4 w-4" />
+                Filters
+                {hasActiveFilters && (
+                  <Badge variant="secondary" className="ml-2">
+                    Active
+                  </Badge>
+                )}
+              </Button>
+
+              {hasActiveFilters && (
+                <Button
+                  variant="ghost"
+                  onClick={clearFilters}
+                  className="flex items-center gap-2 text-gray-600"
+                >
+                  <X className="h-4 w-4" />
+                  Clear All
+                </Button>
               )}
-            </Button>
+            </div>
           </div>
 
-          {/* Filters */}
+          {/* Expanded Filters */}
           {showFilters && (
-            <div className="card-fashion p-6 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Sort By</label>
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="name">Name</SelectItem>
-                      <SelectItem value="price_low">Price: Low to High</SelectItem>
-                      <SelectItem value="price_high">Price: High to Low</SelectItem>
-                      <SelectItem value="rating">Rating</SelectItem>
-                      <SelectItem value="newest">Newest</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Category</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
                   <Select value={selectedSubcategory} onValueChange={setSelectedSubcategory}>
                     <SelectTrigger>
-                      <SelectValue />
+                      <SelectValue placeholder="All categories" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Categories</SelectItem>
-                      {subcategories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                      {subcategories.map(subcategory => (
+                        <SelectItem key={subcategory} value={subcategory}>
+                          {subcategory.charAt(0).toUpperCase() + subcategory.slice(1)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -429,31 +390,19 @@ export default function Men() {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Price Range</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
                   <Select value={priceRange} onValueChange={setPriceRange}>
                     <SelectTrigger>
-                      <SelectValue />
+                      <SelectValue placeholder="All prices" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Prices</SelectItem>
-                      <SelectItem value="0-25">Under $25</SelectItem>
-                      <SelectItem value="25-50">$25 - $50</SelectItem>
-                      <SelectItem value="50-100">$50 - $100</SelectItem>
+                      <SelectItem value="under-100">Under $100</SelectItem>
                       <SelectItem value="100-200">$100 - $200</SelectItem>
-                      <SelectItem value="200">$200+</SelectItem>
+                      <SelectItem value="200-300">$200 - $300</SelectItem>
+                      <SelectItem value="over-300">Over $300</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
-
-                <div className="flex items-end">
-                  <Button
-                    variant="outline"
-                    onClick={clearFilters}
-                    className="w-full gap-2"
-                  >
-                    <X className="h-4 w-4" />
-                    Clear All
-                  </Button>
                 </div>
               </div>
             </div>
@@ -462,61 +411,32 @@ export default function Men() {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 rounded-xl h-80 mb-4"></div>
-                <div className="space-y-3">
-                  <div className="bg-gray-200 h-4 rounded"></div>
-                  <div className="bg-gray-200 h-4 rounded w-3/4"></div>
-                  <div className="bg-gray-200 h-6 rounded w-1/2"></div>
-                </div>
-              </div>
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-black mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading men's products...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredAndSortedProducts().map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        ) : products.length > 0 ? (
-          <>
-            <div className="flex justify-between items-center mb-6">
-              <p className="text-gray-600">
-                Showing {products.length} product{products.length !== 1 ? 's' : ''}
-              </p>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>Sort by:</span>
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-auto border-0 bg-transparent">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="name">Name</SelectItem>
-                    <SelectItem value="price_low">Price: Low to High</SelectItem>
-                    <SelectItem value="price_high">Price: High to Low</SelectItem>
-                    <SelectItem value="rating">Rating</SelectItem>
-                    <SelectItem value="newest">Newest</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} showFullDescription={false} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-16">
-            <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-12 h-12 text-gray-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-              <p className="text-gray-600 mb-6">
-                We couldn't find any products matching your criteria. Try adjusting your filters.
-              </p>
-              <Button onClick={clearFilters} size="lg">
-                Clear All Filters
-              </Button>
-            </div>
+        )}
+
+        {/* No products found */}
+        {!loading && filteredAndSortedProducts().length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-xl text-gray-600 mb-4">No products found matching your criteria.</p>
+            <Button onClick={clearFilters} variant="outline">
+              Clear filters
+            </Button>
+          </div>
+        )}
+
+        {/* Results count */}
+        {!loading && filteredAndSortedProducts().length > 0 && (
+          <div className="mt-8 text-center text-gray-600">
+            Showing {filteredAndSortedProducts().length} of {products.length} products
           </div>
         )}
       </div>

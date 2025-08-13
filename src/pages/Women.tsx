@@ -46,12 +46,18 @@ export default function Women() {
     const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
     
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${cleanImageName}`;
+    
+    // For development, check if we're running locally
+    const isDev = import.meta.env.DEV;
+    const finalUrl = isDev 
+      ? `/images/${cleanImageName}` // Development: direct path
+      : `${base}images/${cleanImageName}`; // Production: with base URL
+    
+    return finalUrl;
   };
 
-  // Sample women's products with diverse names and categories
+  // Sample women's products with exact image names from public/images folder
   const sampleProducts: Product[] = [
-    // Dresses
     {
       id: '550e8400-e29b-41d4-a716-446655440001',
       name: 'Aurora Velvet Evening Gown',
@@ -59,7 +65,7 @@ export default function Women() {
       price: 445,
       sale_price: 356,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1566479179817-c0eb6d2dc3b0?w=400&h=400&fit=crop',
+      image_url: getImageUrl('auroravelvetgown.jpg'),
       rating: 4.9,
       review_count: 31,
       brand: 'EVENING GRACE',
@@ -72,7 +78,7 @@ export default function Women() {
       description: 'Lightweight chiffon dress with watercolor print',
       price: 195,
       is_sale: false,
-      image_url: 'https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Meadow Chiffon Midi Dress.png'),
       rating: 4.7,
       review_count: 22,
       brand: 'GARDEN PARTY',
@@ -85,21 +91,20 @@ export default function Women() {
       description: 'Minimalist satin dress for effortless elegance',
       price: 229,
       is_sale: false,
-      image_url: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Midnight Satin Slip Dress.jpg'),
       rating: 4.8,
       review_count: 38,
       brand: 'MINIMALIST',
       subcategory: 'dresses',
       tags: ['satin', 'slip', 'minimalist']
     },
-    // Tops
     {
       id: '550e8400-e29b-41d4-a716-446655440004',
       name: 'Alpaca Wool Turtleneck',
       description: 'Ultra-soft alpaca wool turtleneck sweater',
       price: 298,
       is_sale: false,
-      image_url: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?w=400&h=400&fit=crop',
+      image_url: getImageUrl('alpacacool.jpg'),
       rating: 4.8,
       review_count: 27,
       brand: 'ALPINE KNITS',
@@ -112,7 +117,7 @@ export default function Women() {
       description: 'Romantic blouse with intricate embroidery details',
       price: 165,
       is_sale: false,
-      image_url: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Embroidered Peasant Blouse.jpg'),
       rating: 4.6,
       review_count: 19,
       brand: 'ARTISAN CRAFT',
@@ -126,14 +131,13 @@ export default function Women() {
       price: 58,
       sale_price: 42,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Organic Cotton Henley.jpg'),
       rating: 4.4,
       review_count: 33,
       brand: 'ECO BASICS',
       subcategory: 'tops',
       tags: ['organic', 'henley', 'sustainable']
     },
-    // Bottoms
     {
       id: '550e8400-e29b-41d4-a716-446655440007',
       name: 'Pleated Palazzo Pants',
@@ -160,7 +164,6 @@ export default function Women() {
       subcategory: 'bottoms',
       tags: ['boyfriend', 'raw-hem', 'relaxed']
     },
-    // Outerwear
     {
       id: '550e8400-e29b-41d4-a716-446655440009',
       name: 'Double-Breasted Trench Coat',
@@ -188,7 +191,6 @@ export default function Women() {
       subcategory: 'outerwear',
       tags: ['faux-fur', 'cropped', 'luxurious']
     },
-    // Shoes
     {
       id: '550e8400-e29b-41d4-a716-446655440011',
       name: 'Pointed Toe Stiletto Pumps',
@@ -215,7 +217,6 @@ export default function Women() {
       subcategory: 'shoes',
       tags: ['espadrille', 'platform', 'rope']
     },
-    // Bags
     {
       id: '550e8400-e29b-41d4-a716-446655440013',
       name: 'Quilted Chain Shoulder Bag',
@@ -243,7 +244,6 @@ export default function Women() {
       subcategory: 'bags',
       tags: ['straw', 'woven', 'bucket']
     },
-    // Jewelry
     {
       id: '550e8400-e29b-41d4-a716-446655440015',
       name: 'Vintage-Inspired Cuff Bracelet',

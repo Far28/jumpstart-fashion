@@ -44,12 +44,18 @@ export default function Sale() {
     const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
     
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${cleanImageName}`;
+    
+    // For development, check if we're running locally
+    const isDev = import.meta.env.DEV;
+    const finalUrl = isDev 
+      ? `/images/${cleanImageName}` // Development: direct path
+      : `${base}images/${cleanImageName}`; // Production: with base URL
+    
+    return finalUrl;
   };
 
-  // Sample sale products with diverse names and categories
+  // Sample sale products with exact image names from public/images folder
   const sampleSaleProducts: Product[] = [
-    // Women's Sale Items
     {
       id: '550e8400-e29b-41d4-a716-446655440301',
       name: 'Cashmere Wrap Cardigan',
@@ -57,7 +63,7 @@ export default function Sale() {
       price: 398,
       sale_price: 239,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Cashmere Wrap Cardigan.jpg'),
       rating: 4.8,
       review_count: 42,
       brand: 'CASHMERE DREAMS',
@@ -72,7 +78,7 @@ export default function Sale() {
       price: 285,
       sale_price: 171,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Floral Wrap Maxi Dress.jpg'),
       rating: 4.6,
       review_count: 38,
       brand: 'BLOOM & CO',
@@ -87,7 +93,7 @@ export default function Sale() {
       price: 245,
       sale_price: 147,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1608256246200-53e8b5f768ec?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Leather Ankle Boots.jpg'),
       rating: 4.7,
       review_count: 29,
       brand: 'STEP CLASSIC',
@@ -97,28 +103,12 @@ export default function Sale() {
     },
     {
       id: '550e8400-e29b-41d4-a716-446655440304',
-      name: 'Silk Blouse with Bow Tie',
-      description: 'Elegant silk blouse with detachable bow',
-      price: 175,
-      sale_price: 105,
-      is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=400&fit=crop',
-      rating: 4.5,
-      review_count: 33,
-      brand: 'SILK ESSENCE',
-      category: 'women',
-      subcategory: 'tops',
-      tags: ['silk', 'blouse', 'bow']
-    },
-    // Men's Sale Items
-    {
-      id: '550e8400-e29b-41d4-a716-446655440305',
       name: 'Merino Wool V-Neck Sweater',
       description: 'Classic v-neck sweater in charcoal grey',
       price: 165,
       sale_price: 99,
       is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=400&h=400&fit=crop',
+      image_url: getImageUrl('Merino Wool V-Neck Sweater.jpg'),
       rating: 4.6,
       review_count: 45,
       brand: 'WOOL & CO',
@@ -127,128 +117,7 @@ export default function Sale() {
       tags: ['merino', 'v-neck', 'sweater']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440306',
-      name: 'Slim Fit Chino Pants',
-      description: 'Modern fit chinos in navy blue',
-      price: 89,
-      sale_price: 53,
-      is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=400&fit=crop',
-      rating: 4.4,
-      review_count: 52,
-      brand: 'URBAN FIT',
-      category: 'men',
-      subcategory: 'bottoms',
-      tags: ['chino', 'slim-fit', 'navy']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440307',
-      name: 'Quilted Bomber Jacket',
-      description: 'Lightweight bomber with quilted details',
-      price: 195,
-      sale_price: 117,
-      is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop',
-      rating: 4.7,
-      review_count: 36,
-      brand: 'BOMBER STYLE',
-      category: 'men',
-      subcategory: 'outerwear',
-      tags: ['bomber', 'quilted', 'lightweight']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440308',
-      name: 'Oxford Leather Dress Shoes',
-      description: 'Classic oxford shoes in cognac leather',
-      price: 285,
-      sale_price: 171,
-      is_sale: true,
-      image_url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop',
-      rating: 4.8,
-      review_count: 27,
-      brand: 'OXFORD CRAFT',
-      category: 'men',
-      subcategory: 'shoes',
-      tags: ['oxford', 'leather', 'dress']
-    },
-    // Accessories Sale Items
-    {
-      id: '550e8400-e29b-41d4-a716-446655440309',
-      name: 'Italian Leather Handbag',
-      description: 'Structured handbag in burgundy leather',
-      price: 425,
-      sale_price: 255,
-      is_sale: true,
-      image_url: getImageUrl('Leather Messenger Bag.jpg'),
-      rating: 4.9,
-      review_count: 31,
-      brand: 'MILANO BAGS',
-      category: 'accessories',
-      subcategory: 'bags',
-      tags: ['italian', 'leather', 'handbag']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440310',
-      name: 'Swiss Automatic Watch',
-      description: 'Precision timepiece with steel bracelet',
-      price: 895,
-      sale_price: 537,
-      is_sale: true,
-      image_url: getImageUrl('Swiss Automatic Watch.jpg'),
-      rating: 4.8,
-      review_count: 24,
-      brand: 'SWISS TIME',
-      category: 'accessories',
-      subcategory: 'watches',
-      tags: ['swiss', 'automatic', 'steel']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440311',
-      name: 'Designer Sunglasses',
-      description: 'Vintage-inspired frames with UV protection',
-      price: 225,
-      sale_price: 135,
-      is_sale: true,
-      image_url: getImageUrl('Designer Sunglasses.jpg'),
-      rating: 4.5,
-      review_count: 39,
-      brand: 'SHADE STYLE',
-      category: 'accessories',
-      subcategory: 'sunglasses',
-      tags: ['designer', 'vintage', 'uv']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440312',
-      name: 'Pearl Statement Necklace',
-      description: 'Elegant cultured pearl necklace',
-      price: 315,
-      sale_price: 189,
-      is_sale: true,
-      image_url: getImageUrl('Pearl Statement Necklace.jpg'),
-      rating: 4.6,
-      review_count: 28,
-      brand: 'PEARL LUXURY',
-      category: 'accessories',
-      subcategory: 'jewelry',
-      tags: ['pearl', 'statement', 'cultured']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440313',
-      name: 'Bohemian Kimono Jacket',
-      description: 'Flowing kimono with paisley print',
-      price: 145,
-      sale_price: 87,
-      is_sale: true,
-      image_url: getImageUrl('Bohemian Kimono Jacket.jpg'),
-      rating: 4.4,
-      review_count: 34,
-      brand: 'BOHO CHIC',
-      category: 'women',
-      subcategory: 'outerwear',
-      tags: ['kimono', 'bohemian', 'paisley']
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440314',
+      id: '550e8400-e29b-41d4-a716-446655440305',
       name: 'Denim Trucker Jacket',
       description: 'Classic denim jacket in stonewashed blue',
       price: 125,
@@ -263,7 +132,22 @@ export default function Sale() {
       tags: ['denim', 'trucker', 'stonewashed']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440315',
+      id: '550e8400-e29b-41d4-a716-446655440306',
+      name: 'Designer Sunglasses',
+      description: 'Vintage-inspired frames with UV protection',
+      price: 225,
+      sale_price: 135,
+      is_sale: true,
+      image_url: getImageUrl('Designer Sunglasses.jpg'),
+      rating: 4.5,
+      review_count: 39,
+      brand: 'SHADE STYLE',
+      category: 'accessories',
+      subcategory: 'sunglasses',
+      tags: ['designer', 'vintage', 'uv']
+    },
+    {
+      id: '550e8400-e29b-41d4-a716-446655440307',
       name: 'Crossbody Phone Bag',
       description: 'Compact crossbody bag for essentials',
       price: 75,
@@ -278,19 +162,19 @@ export default function Sale() {
       tags: ['crossbody', 'phone', 'compact']
     },
     {
-      id: '550e8400-e29b-41d4-a716-446655440316',
-      name: 'Wool Blend Peacoat',
-      description: 'Double-breasted peacoat in navy wool',
-      price: 345,
-      sale_price: 207,
+      id: '550e8400-e29b-41d4-a716-446655440308',
+      name: 'Bohemian Kimono Jacket',
+      description: 'Flowing kimono with paisley print',
+      price: 145,
+      sale_price: 87,
       is_sale: true,
-      image_url: getImageUrl('Wool Blend Peacoat.jpg'),
-      rating: 4.7,
-      review_count: 22,
-      brand: 'NAVAL STYLE',
-      category: 'men',
+      image_url: getImageUrl('Bohemian Kimono Jacket.jpg'),
+      rating: 4.4,
+      review_count: 34,
+      brand: 'BOHO CHIC',
+      category: 'women',
       subcategory: 'outerwear',
-      tags: ['peacoat', 'wool', 'double-breasted']
+      tags: ['kimono', 'bohemian', 'paisley']
     }
   ];
 

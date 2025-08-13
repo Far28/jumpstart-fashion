@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/jumpstart-fashion/',
+  base: '/jumpstartfashion', // Removed trailing slash to match Router basename
   server: {
     host: "::",
     port: 8080,

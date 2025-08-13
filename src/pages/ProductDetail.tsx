@@ -39,6 +39,34 @@ interface SentimentStats {
   averageScore: number;
 }
 
+// Helper function to get correct image path
+const getImageUrl = (imageName: string) => {
+  if (!imageName) return '/placeholder.svg';
+  if (imageName.startsWith('http')) return imageName; // Already a full URL
+  
+  // Remove any leading slashes or 'images/' prefix from imageName
+  const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
+  
+  const base = import.meta.env.BASE_URL || '/';
+  
+  // For development, check if we're running locally
+  const isDev = import.meta.env.DEV;
+  const finalUrl = isDev 
+    ? `/images/${cleanImageName}` // Development: direct path
+    : `${base}images/${cleanImageName}`; // Production: with base URL
+  
+  console.log('getImageUrl Debug:', {
+    input: imageName,
+    cleanImageName,
+    base,
+    isDev,
+    finalUrl,
+    currentLocation: window.location.href
+  });
+  
+  return finalUrl;
+};
+
 // Helper functions to get sample products from each page
 const getAllSampleProducts = () => [
   // Women's products (matching Women.tsx)
@@ -49,7 +77,7 @@ const getAllSampleProducts = () => [
     price: 445,
     sale_price: 356,
     is_sale: true,
-    image_url: '/images/auroravelvetgown.jpg',
+    image_url: 'auroravelvetgown.jpg',
     rating: 4.9,
     review_count: 31,
     brand: 'EVENING GRACE',
@@ -949,6 +977,260 @@ const getAllSampleProducts = () => [
     stock_quantity: 26
   },
 
+  // Men's products from Men.tsx (exact match for navigation)
+  {
+    id: '550e8400-e29b-41d4-a716-446655440050',
+    name: 'Oxford Button-Down Shirt',
+    description: 'Classic Oxford cotton button-down shirt',
+    price: 89,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'shirts',
+    brand: 'CLASSIC FIT',
+    image_url: 'Oxford Button-Down Shirt.jpg',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['White', 'Blue', 'Light Blue'],
+    stock_quantity: 67,
+    rating: 4.5,
+    review_count: 67,
+    tags: ['oxford', 'cotton', 'formal']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440051',
+    name: 'Linen Weekend Shirt',
+    description: 'Relaxed linen shirt for casual weekends',
+    price: 125,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'shirts',
+    brand: 'COASTAL CASUAL',
+    image_url: 'Linen Weekend Shirt.jpg',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['White', 'Navy', 'Khaki'],
+    stock_quantity: 34,
+    rating: 4.3,
+    review_count: 34,
+    tags: ['linen', 'casual', 'summer']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440052',
+    name: 'Organic Cotton Henley',
+    description: 'Soft organic cotton henley shirt',
+    price: 65,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'shirts',
+    brand: 'ECO BASICS',
+    image_url: 'organic cotton henley.jpg',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Heather Gray', 'Navy', 'Black'],
+    stock_quantity: 89,
+    rating: 4.4,
+    review_count: 89,
+    tags: ['organic', 'cotton', 'henley']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440053',
+    name: 'Stretch Chino Trousers',
+    description: 'Comfortable stretch chino pants',
+    price: 95,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'pants',
+    brand: 'FLEX FIT',
+    image_url: 'Stretch Chino Trousers.jpg',
+    sizes: ['30', '32', '34', '36', '38'],
+    colors: ['Khaki', 'Navy', 'Black'],
+    stock_quantity: 45,
+    rating: 4.6,
+    review_count: 45,
+    tags: ['chino', 'stretch', 'casual']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440054',
+    name: 'Slim Fit Chino Pants',
+    description: 'Navy blue slim fit chino pants',
+    price: 85,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'pants',
+    brand: 'TAILORED FIT',
+    image_url: 'Slim Fit Chino Pants in navy blue.jpg',
+    sizes: ['30', '32', '34', '36', '38'],
+    colors: ['Navy', 'Khaki', 'Gray'],
+    stock_quantity: 52,
+    rating: 4.5,
+    review_count: 52,
+    tags: ['chino', 'slim', 'navy']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440055',
+    name: 'Slim-Fit Dark Wash Jeans',
+    description: 'Premium dark wash denim jeans',
+    price: 115,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'pants',
+    brand: 'DENIM WORKS',
+    image_url: 'Slim-Fit Dark Wash Jeans.jpg',
+    sizes: ['30', '32', '34', '36', '38'],
+    colors: ['Dark Wash', 'Black'],
+    stock_quantity: 78,
+    rating: 4.7,
+    review_count: 78,
+    tags: ['jeans', 'slim', 'dark wash']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440056',
+    name: 'Quilted Bomber Jacket',
+    description: 'Modern quilted bomber jacket',
+    price: 185,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'outerwear',
+    brand: 'STREET STYLE',
+    image_url: 'Quilted Bomber Jacket.jpg',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Black', 'Navy', 'Olive'],
+    stock_quantity: 29,
+    rating: 4.4,
+    review_count: 29,
+    tags: ['bomber', 'quilted', 'casual']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440057',
+    name: 'Wool Pea Coat',
+    description: 'Classic wool pea coat for winter',
+    price: 298,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'outerwear',
+    brand: 'WINTER CLASSIC',
+    image_url: 'Wool Pea Coat.jpg',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Charcoal', 'Navy'],
+    stock_quantity: 41,
+    rating: 4.8,
+    review_count: 41,
+    tags: ['wool', 'pea coat', 'winter']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440058',
+    name: 'Navy Wool Business Suit',
+    description: 'Professional navy wool business suit',
+    price: 595,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'suits',
+    brand: 'EXECUTIVE',
+    image_url: 'Navy Wool Business Suit.jpg',
+    sizes: ['38R', '40R', '42R', '44R'],
+    colors: ['Navy', 'Charcoal'],
+    stock_quantity: 18,
+    rating: 4.9,
+    review_count: 18,
+    tags: ['wool', 'navy', 'business']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440059',
+    name: 'Leather Dress Oxfords',
+    description: 'Premium leather Oxford dress shoes',
+    price: 245,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'shoes',
+    brand: 'CLASSIC LEATHER',
+    image_url: 'Leather Dress Oxfords.jpg',
+    sizes: ['7', '8', '9', '10', '11', '12'],
+    colors: ['Black', 'Brown'],
+    stock_quantity: 33,
+    rating: 4.6,
+    review_count: 33,
+    tags: ['leather', 'oxford', 'formal']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440060',
+    name: 'Canvas High-Top Sneakers',
+    description: 'Classic canvas high-top sneakers',
+    price: 85,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'shoes',
+    brand: 'STREET CLASSIC',
+    image_url: 'Canvas High-Top Sneakers.jpg',
+    sizes: ['7', '8', '9', '10', '11', '12'],
+    colors: ['White', 'Black', 'Navy'],
+    stock_quantity: 67,
+    rating: 4.3,
+    review_count: 67,
+    tags: ['canvas', 'sneakers', 'casual']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440061',
+    name: 'Leather Messenger Bag',
+    description: 'Professional leather messenger bag',
+    price: 195,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'accessories',
+    brand: 'PROFESSIONAL',
+    image_url: 'Leather Messenger Bag.jpg',
+    sizes: ['One Size'],
+    colors: ['Brown', 'Black'],
+    stock_quantity: 24,
+    rating: 4.7,
+    review_count: 24,
+    tags: ['leather', 'messenger', 'business']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440062',
+    name: 'Minimalist Steel Watch',
+    description: 'Clean minimalist steel watch',
+    price: 155,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'watches',
+    brand: 'TIME MINIMAL',
+    image_url: 'Minimalist Steel Watch.jpg',
+    sizes: ['One Size'],
+    colors: ['Silver', 'Black'],
+    stock_quantity: 45,
+    rating: 4.5,
+    review_count: 45,
+    tags: ['steel', 'minimalist', 'modern']
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440063',
+    name: 'Vintage Leather Strap Watch',
+    description: 'Classic vintage-style leather strap watch',
+    price: 135,
+    sale_price: null,
+    is_sale: false,
+    category: 'men',
+    subcategory: 'watches',
+    brand: 'VINTAGE TIME',
+    image_url: 'Vintage Leather Strap Watch.jpg',
+    sizes: ['One Size'],
+    colors: ['Brown', 'Black'],
+    stock_quantity: 38,
+    rating: 4.4,
+    review_count: 38,
+    tags: ['leather', 'vintage', 'classic']
+  },
+
   // Sale products (matching Sale.tsx exactly)
   {
     id: '550e8400-e29b-41d4-a716-446655440301',
@@ -993,7 +1275,7 @@ const getAllSampleProducts = () => [
     price: 245,
     sale_price: 147,
     is_sale: true,
-    image_url: '/images/Leather Ankle Boots.jpg',
+    image_url: 'Leather Ankle Boots.jpg',
     rating: 4.7,
     review_count: 29,
     brand: 'STEP CLASSIC',
@@ -1465,7 +1747,7 @@ const ProductDetail = () => {
           {/* Product Image */}
           <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
             <img 
-              src={product.image_url} 
+              src={getImageUrl(product.image_url)} 
               alt={product.name}
               className="w-full h-full object-cover"
             />

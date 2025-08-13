@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/integrations/supabase/client';
 import { Search, Filter, X } from 'lucide-react';
 
 interface Product {
@@ -39,20 +38,32 @@ export default function Accessories() {
 
   // Helper function to get correct image path
   const getImageUrl = (imageName: string) => {
+    if (!imageName) return '/placeholder.svg';
+    if (imageName.startsWith('http')) return imageName; // Already a full URL
+    
+    // Remove any leading slashes or 'images/' prefix from imageName
+    const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
+    
     const base = import.meta.env.BASE_URL || '/';
-    return `${base}images/${imageName}`;
+    
+    // For development, check if we're running locally
+    const isDev = import.meta.env.DEV;
+    const finalUrl = isDev 
+      ? `/images/${cleanImageName}` // Development: direct path
+      : `${base}images/${cleanImageName}`; // Production: with base URL
+    
+    return finalUrl;
   };
 
-  // Sample accessories products with diverse names and categories
+  // Sample accessories products with exact image names from public/images folder
   const sampleProducts: Product[] = [
-    // Bags
     {
       id: '550e8400-e29b-41d4-a716-446655440201',
       name: 'Vintage Leather Satchel',
       description: 'Handcrafted leather satchel with brass hardware',
       price: 289,
       is_sale: false,
-      image_url: getImageUrl('Vintage Leather Satchel.jpg'),
+      image_url: 'Vintage Leather Satchel.jpg',
       rating: 4.8,
       review_count: 27,
       brand: 'HERITAGE BAGS',
@@ -66,14 +77,13 @@ export default function Accessories() {
       price: 149,
       sale_price: 119,
       is_sale: true,
-      image_url: getImageUrl('Canvas Weekender Bag.jpg'),
+      image_url: 'crossbody.jpeg',
       rating: 4.6,
       review_count: 34,
       brand: 'TRAVEL ESSENTIALS',
       subcategory: 'bags',
       tags: ['canvas', 'weekender', 'travel']
     },
-    // Jewelry
     {
       id: '550e8400-e29b-41d4-a716-446655440203',
       name: 'Sterling Silver Signet Ring',
@@ -94,14 +104,13 @@ export default function Accessories() {
       price: 89,
       sale_price: 69,
       is_sale: true,
-      image_url: getImageUrl('Beaded Charm Bracelet.jpg'),
+      image_url: 'Beaded Charm Bracelet.jpg',
       rating: 4.5,
       review_count: 41,
       brand: 'ARTISAN JEWELRY',
       subcategory: 'jewelry',
       tags: ['beaded', 'charm', 'artisan']
     },
-    // Watches
     {
       id: '550e8400-e29b-41d4-a716-446655440205',
       name: 'Rose Gold Mesh Watch',
@@ -129,7 +138,6 @@ export default function Accessories() {
       subcategory: 'watches',
       tags: ['smart', 'fitness', 'tech']
     },
-    // Sunglasses
     {
       id: '550e8400-e29b-41d4-a716-446655440207',
       name: 'Aviator Polarized Sunglasses',
@@ -157,7 +165,6 @@ export default function Accessories() {
       subcategory: 'sunglasses',
       tags: ['cat-eye', 'oversized', 'trendy']
     },
-    // Hats
     {
       id: '550e8400-e29b-41d4-a716-446655440209',
       name: 'Wide-Brim Fedora Hat',
@@ -171,21 +178,19 @@ export default function Accessories() {
       subcategory: 'hats',
       tags: ['fedora', 'wide-brim', 'classic']
     },
-    // Scarves
     {
       id: '550e8400-e29b-41d4-a716-446655440210',
       name: 'Cashmere Blend Winter Scarf',
       description: 'Luxurious cashmere blend scarf in neutral tones',
       price: 125,
       is_sale: false,
-      image_url: getImageUrl('Cashmere Blend Winter Scarf.jpg'),
+      image_url: 'Cashmere Blend Winter Scarf.jpg',
       rating: 4.8,
       review_count: 25,
       brand: 'WINTER WARMTH',
       subcategory: 'scarves',
       tags: ['cashmere', 'winter', 'neutral']
     },
-    // Belts
     {
       id: '550e8400-e29b-41d4-a716-446655440211',
       name: 'Genuine Leather Belt',
@@ -200,7 +205,6 @@ export default function Accessories() {
       subcategory: 'belts',
       tags: ['leather', 'classic', 'silver']
     },
-    // Wallets
     {
       id: '550e8400-e29b-41d4-a716-446655440212',
       name: 'Minimalist Card Holder',
@@ -217,118 +221,69 @@ export default function Accessories() {
   ];
 
   useEffect(() => {
+    const fetchProducts = () => {
+      try {
+        console.log('Accessories Database data:', sampleProducts);
+        console.log('Accessories Data length:', sampleProducts.length);
+        
+        setProducts(sampleProducts);
+        console.log('Accessories Final products to display:', sampleProducts);
+      } catch (error) {
+        console.error('Error fetching accessories products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
-  }, [sortBy, priceRange, selectedSubcategory, searchTerm]);
+  }, []);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      let query = supabase
-        .from('products')
-        .select('*')
-        .eq('category', 'accessories');
+  // Filter and sort products based on search and filter criteria
+  useEffect(() => {
+    let filtered = sampleProducts;
 
-      // Apply filters
-      if (selectedSubcategory !== 'all') {
-        query = query.eq('subcategory', selectedSubcategory);
-      }
-
-      if (priceRange !== 'all') {
-        const [min, max] = priceRange.split('-').map(Number);
-        if (max) {
-          query = query.gte('price', min).lte('price', max);
-        } else {
-          query = query.gte('price', min);
-        }
-      }
-
-      if (searchTerm) {
-        query = query.or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,brand.ilike.%${searchTerm}%`);
-      }
-
-      // Apply sorting
-      switch (sortBy) {
-        case 'price_low':
-          query = query.order('price', { ascending: true });
-          break;
-        case 'price_high':
-          query = query.order('price', { ascending: false });
-          break;
-        case 'rating':
-          query = query.order('rating', { ascending: false });
-          break;
-        case 'newest':
-          query = query.order('created_at', { ascending: false });
-          break;
-        default:
-          query = query.order('name', { ascending: true });
-      }
-
-      const { data, error } = await query;
-      if (error) throw error;
-
-      console.log('Accessories Database data:', data); // Debug log
-      console.log('Accessories Data length:', data?.length); // Debug log
-
-      // Force use sample data for now (to debug)
-      let productsToDisplay = sampleProducts;
-
-      // Apply client-side filtering to sample data
-      productsToDisplay = sampleProducts.filter(product => {
-        // Filter by subcategory
-        if (selectedSubcategory !== 'all' && product.subcategory !== selectedSubcategory) {
-          return false;
-        }
-
-        // Filter by price range
-        if (priceRange !== 'all') {
-          const [min, max] = priceRange.split('-').map(Number);
-          if (max && (product.price < min || product.price > max)) {
-            return false;
-          } else if (!max && product.price < min) {
-            return false;
-          }
-        }
-
-        // Filter by search term
-        if (searchTerm) {
-          const searchLower = searchTerm.toLowerCase();
-          return (
-            product.name.toLowerCase().includes(searchLower) ||
-            product.description?.toLowerCase().includes(searchLower) ||
-            product.brand?.toLowerCase().includes(searchLower)
-          );
-        }
-
-        return true;
-      });
-
-      // Apply client-side sorting to sample data
-      productsToDisplay.sort((a, b) => {
-        switch (sortBy) {
-          case 'price_low':
-            return a.price - b.price;
-          case 'price_high':
-            return b.price - a.price;
-          case 'rating':
-            return b.rating - a.rating;
-          case 'newest':
-            return 0; // No created_at for sample data
-          default:
-            return a.name.localeCompare(b.name);
-        }
-      });
-
-      console.log('Accessories Final products to display:', productsToDisplay); // Debug log
-      setProducts(productsToDisplay);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      // Fallback to sample data on error
-      setProducts(sampleProducts);
-    } finally {
-      setLoading(false);
+    // Search by name
+    if (searchTerm) {
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
-  };
+
+    // Filter by subcategory
+    if (selectedSubcategory !== 'all') {
+      filtered = filtered.filter(product => 
+        product.subcategory === selectedSubcategory
+      );
+    }
+
+    // Filter by price range
+    if (priceRange === 'under-100') {
+      filtered = filtered.filter(product => product.price < 100);
+    } else if (priceRange === '100-300') {
+      filtered = filtered.filter(product => product.price >= 100 && product.price <= 300);
+    } else if (priceRange === 'above-300') {
+      filtered = filtered.filter(product => product.price > 300);
+    }
+
+    // Sort products
+    if (sortBy === 'price-low') {
+      filtered = [...filtered].sort((a, b) => {
+        const priceA = a.is_sale && a.sale_price ? a.sale_price : a.price;
+        const priceB = b.is_sale && b.sale_price ? b.sale_price : b.price;
+        return priceA - priceB;
+      });
+    } else if (sortBy === 'price-high') {
+      filtered = [...filtered].sort((a, b) => {
+        const priceA = a.is_sale && a.sale_price ? a.sale_price : a.price;
+        const priceB = b.is_sale && b.sale_price ? b.sale_price : b.price;
+        return priceB - priceA;
+      });
+    } else if (sortBy === 'rating') {
+      filtered = [...filtered].sort((a, b) => b.rating - a.rating);
+    }
+
+    setProducts(filtered);
+  }, [searchTerm, sortBy, priceRange, selectedSubcategory]);
 
   const clearFilters = () => {
     setSearchTerm('');
@@ -351,7 +306,9 @@ export default function Accessories() {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold hero-text mb-4">Accessories Collection</h1>
+          <h1 className="text-4xl font-bold hero-text mb-4">
+            Accessories Collection
+          </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Complete your look with our carefully selected accessories, from statement jewelry to practical tech.
           </p>
@@ -359,7 +316,6 @@ export default function Accessories() {
 
         {/* Search and Filters */}
         <div className="mb-8 space-y-4">
-          {/* Search Bar */}
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -370,7 +326,6 @@ export default function Accessories() {
             />
           </div>
 
-          {/* Filter Toggle */}
           <div className="flex justify-center">
             <Button
               variant="outline"
@@ -379,15 +334,10 @@ export default function Accessories() {
             >
               <Filter className="h-4 w-4" />
               Filters
-              {activeFiltersCount > 0 && (
-                <Badge variant="secondary" className="ml-1">
-                  {activeFiltersCount}
-                </Badge>
-              )}
             </Button>
           </div>
 
-          {/* Filters */}
+          {/* Filter options */}
           {showFilters && (
             <div className="card-fashion p-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
