@@ -159,25 +159,57 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Helper function to get sample product data
   const getSampleProductData = (productId: string) => {
-    // Sample product data - this should match the data from your product pages
+    // Sample product data - this matches the data from ProductDetail.tsx
     const sampleProducts: { [key: string]: any } = {
       // Women's Products
       '550e8400-e29b-41d4-a716-446655440001': {
         id: '550e8400-e29b-41d4-a716-446655440001',
-        name: 'Elegant Evening Dress',
-        price: 129.99,
-        sale_price: null,
-        image_url: 'dress.png',
-        is_sale: false
+        name: 'Aurora Velvet Evening Gown',
+        price: 445,
+        sale_price: 356,
+        image_url: 'auroravelvetgown.jpg',
+        is_sale: true
       },
       '550e8400-e29b-41d4-a716-446655440002': {
         id: '550e8400-e29b-41d4-a716-446655440002',
-        name: 'Luxury Designer Clutch',
-        price: 89.99,
+        name: 'Meadow Chiffon Midi Dress',
+        price: 195,
         sale_price: null,
-        image_url: 'image.png',
+        image_url: 'meadow-chiffon-midi-dress.png',
         is_sale: false
       },
+      '550e8400-e29b-41d4-a716-446655440003': {
+        id: '550e8400-e29b-41d4-a716-446655440003',
+        name: 'Midnight Satin Slip Dress',
+        price: 229,
+        sale_price: null,
+        image_url: 'midnight-satin-slip-dress.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440004': {
+        id: '550e8400-e29b-41d4-a716-446655440004',
+        name: 'Alpaca Wool Turtleneck',
+        price: 298,
+        sale_price: null,
+        image_url: 'alapacacool.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440005': {
+        id: '550e8400-e29b-41d4-a716-446655440005',
+        name: 'Embroidered Peasant Blouse',
+        price: 165,
+        sale_price: null,
+        image_url: 'embroidered-peasant-blouse.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440006': {
+        id: '550e8400-e29b-41d4-a716-446655440006',
+        name: 'Organic Cotton Henley',
+        price: 98,
+        sale_price: null,
+        image_url: 'organic-cotton-henley.jpg',
+        is_sale: false
+      }
       '550e8400-e29b-41d4-a716-446655440003': {
         id: '550e8400-e29b-41d4-a716-446655440003',
         name: 'Bohemian Maxi Dress',
