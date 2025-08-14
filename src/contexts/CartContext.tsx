@@ -209,6 +209,86 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         sale_price: null,
         image_url: 'organic-cotton-henley.jpg',
         is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440007': {
+        id: '550e8400-e29b-41d4-a716-446655440007',
+        name: 'Pleated Palazzo Pants',
+        price: 189,
+        sale_price: null,
+        image_url: 'pleated-plazo-pants.png',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440008': {
+        id: '550e8400-e29b-41d4-a716-446655440008',
+        name: 'Raw Hem Boyfriend Jeans',
+        price: 125,
+        sale_price: null,
+        image_url: 'raw-hem-boyfriend-jeans.png',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440009': {
+        id: '550e8400-e29b-41d4-a716-446655440009',
+        name: 'Double-Breasted Trench Coat',
+        price: 389,
+        sale_price: null,
+        image_url: 'doublebreastedtrenchcoat.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440010': {
+        id: '550e8400-e29b-41d4-a716-446655440010',
+        name: 'Faux Fur Cropped Jacket',
+        price: 275,
+        sale_price: 206,
+        image_url: 'fauxfurjacket.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440011': {
+        id: '550e8400-e29b-41d4-a716-446655440011',
+        name: 'Pointed Toe Stiletto Pumps',
+        price: 245,
+        sale_price: null,
+        image_url: 'pointed-toe-stiletto-pumps.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440012': {
+        id: '550e8400-e29b-41d4-a716-446655440012',
+        name: 'Platform Espadrille Sandals',
+        price: 155,
+        sale_price: null,
+        image_url: 'platform-espadrille-sandals.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440013': {
+        id: '550e8400-e29b-41d4-a716-446655440013',
+        name: 'Quilted Chain Shoulder Bag',
+        price: 325,
+        sale_price: null,
+        image_url: 'image.png',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440014': {
+        id: '550e8400-e29b-41d4-a716-446655440014',
+        name: 'Woven Straw Bucket Bag',
+        price: 98,
+        sale_price: 78,
+        image_url: 'woven-straw-bucket-bag.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440015': {
+        id: '550e8400-e29b-41d4-a716-446655440015',
+        name: 'Vintage-Inspired Cuff Bracelet',
+        price: 125,
+        sale_price: null,
+        image_url: 'vintage-inspired-cuff-bracelet.png',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440016': {
+        id: '550e8400-e29b-41d4-a716-446655440016',
+        name: 'Diamond-Cut Hoop Earrings',
+        price: 89,
+        sale_price: null,
+        image_url: 'diamondcuthoop.jpg',
+        is_sale: false
       }
     };
 
