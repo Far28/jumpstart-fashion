@@ -223,6 +223,313 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const addToCart = async (productId: string, quantity = 1, size?: string, color?: string) => {
+      '550e8400-e29b-41d4-a716-446655440008': {
+        id: '550e8400-e29b-41d4-a716-446655440008',
+        name: 'Floral Print Skirt',
+        price: 59.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440009': {
+        id: '550e8400-e29b-41d4-a716-446655440009',
+        name: 'Cashmere Sweater',
+        price: 159.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440010': {
+        id: '550e8400-e29b-41d4-a716-446655440010',
+        name: 'Designer Handbag',
+        price: 299.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440011': {
+        id: '550e8400-e29b-41d4-a716-446655440011',
+        name: 'Cocktail Dress',
+        price: 149.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440012': {
+        id: '550e8400-e29b-41d4-a716-446655440012',
+        name: 'Statement Earrings',
+        price: 39.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440013': {
+        id: '550e8400-e29b-41d4-a716-446655440013',
+        name: 'Wrap Blouse',
+        price: 79.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440014': {
+        id: '550e8400-e29b-41d4-a716-446655440014',
+        name: 'Pencil Skirt',
+        price: 69.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440015': {
+        id: '550e8400-e29b-41d4-a716-446655440015',
+        name: 'Blazer',
+        price: 119.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440016': {
+        id: '550e8400-e29b-41d4-a716-446655440016',
+        name: 'Designer Scarf',
+        price: 49.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      
+      // Men's Products (101-112)
+      '550e8400-e29b-41d4-a716-446655440101': {
+        id: '550e8400-e29b-41d4-a716-446655440101',
+        name: 'Classic Suit',
+        price: 399.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440102': {
+        id: '550e8400-e29b-41d4-a716-446655440102',
+        name: 'Leather Dress Shoes',
+        price: 199.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440103': {
+        id: '550e8400-e29b-41d4-a716-446655440103',
+        name: 'Cotton Polo Shirt',
+        price: 59.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440104': {
+        id: '550e8400-e29b-41d4-a716-446655440104',
+        name: 'Denim Jeans',
+        price: 89.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440105': {
+        id: '550e8400-e29b-41d4-a716-446655440105',
+        name: 'Wool Sweater',
+        price: 129.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440106': {
+        id: '550e8400-e29b-41d4-a716-446655440106',
+        name: 'Casual Sneakers',
+        price: 149.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440107': {
+        id: '550e8400-e29b-41d4-a716-446655440107',
+        name: 'Business Shirt',
+        price: 79.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440108': {
+        id: '550e8400-e29b-41d4-a716-446655440108',
+        name: 'Leather Belt',
+        price: 49.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440109': {
+        id: '550e8400-e29b-41d4-a716-446655440109',
+        name: 'Chino Pants',
+        price: 69.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440110': {
+        id: '550e8400-e29b-41d4-a716-446655440110',
+        name: 'Hoodie',
+        price: 89.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440111': {
+        id: '550e8400-e29b-41d4-a716-446655440111',
+        name: 'Sports Watch',
+        price: 299.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440112': {
+        id: '550e8400-e29b-41d4-a716-446655440112',
+        name: 'Winter Jacket',
+        price: 179.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      
+      // Accessories (201-212)
+      '550e8400-e29b-41d4-a716-446655440201': {
+        id: '550e8400-e29b-41d4-a716-446655440201',
+        name: 'Designer Sunglasses',
+        price: 159.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440202': {
+        id: '550e8400-e29b-41d4-a716-446655440202',
+        name: 'Silk Scarf',
+        price: 69.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440203': {
+        id: '550e8400-e29b-41d4-a716-446655440203',
+        name: 'Gold Watch',
+        price: 899.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440204': {
+        id: '550e8400-e29b-41d4-a716-446655440204',
+        name: 'Pearl Necklace',
+        price: 299.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440205': {
+        id: '550e8400-e29b-41d4-a716-446655440205',
+        name: 'Leather Wallet',
+        price: 89.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440206': {
+        id: '550e8400-e29b-41d4-a716-446655440206',
+        name: 'Diamond Earrings',
+        price: 599.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440207': {
+        id: '550e8400-e29b-41d4-a716-446655440207',
+        name: 'Luxury Handbag',
+        price: 499.99,
+        sale_price: null,
+        image_url: '/images/image.png',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440208': {
+        id: '550e8400-e29b-41d4-a716-446655440208',
+        name: 'Designer Belt',
+        price: 129.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440209': {
+        id: '550e8400-e29b-41d4-a716-446655440209',
+        name: 'Silver Bracelet',
+        price: 149.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440210': {
+        id: '550e8400-e29b-41d4-a716-446655440210',
+        name: 'Fashion Ring',
+        price: 79.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440211': {
+        id: '550e8400-e29b-41d4-a716-446655440211',
+        name: 'Cashmere Gloves',
+        price: 59.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440212': {
+        id: '550e8400-e29b-41d4-a716-446655440212',
+        name: 'Vintage Brooch',
+        price: 39.99,
+        sale_price: null,
+        image_url: '/placeholder.svg',
+        is_sale: false
+      },
+      
+      // Sale Products (301-303)
+      '550e8400-e29b-41d4-a716-446655440301': {
+        id: '550e8400-e29b-41d4-a716-446655440301',
+        name: 'Summer Dress',
+        price: 99.99,
+        sale_price: 59.99,
+        image_url: '/placeholder.svg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440302': {
+        id: '550e8400-e29b-41d4-a716-446655440302',
+        name: 'Designer Handbag',
+        price: 299.99,
+        sale_price: 199.99,
+        image_url: '/placeholder.svg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440303': {
+        id: '550e8400-e29b-41d4-a716-446655440303',
+        name: 'Casual Sneakers',
+        price: 149.99,
+        sale_price: 99.99,
+        image_url: '/placeholder.svg',
+        is_sale: true
+      }
+    };
+
+    return sampleProducts[productId] || {
+      id: productId,
+      name: 'Sample Product',
+      price: 49.99,
+      sale_price: null,
+      image_url: '/placeholder.svg',
+      is_sale: false
+    };
+  };
+
+  const addToCart = async (productId: string, quantity = 1, size?: string, color?: string) => {
     if (!user) {
       toast({
         title: 'Please sign in',
