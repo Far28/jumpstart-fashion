@@ -289,6 +289,276 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         sale_price: null,
         image_url: 'diamondcuthoop.jpg',
         is_sale: false
+      },
+      
+      // Men's Products (050-063)
+      '550e8400-e29b-41d4-a716-446655440050': {
+        id: '550e8400-e29b-41d4-a716-446655440050',
+        name: 'Oxford Button-Down Shirt',
+        price: 89,
+        sale_price: null,
+        image_url: 'oxford-button-down-shirt.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440051': {
+        id: '550e8400-e29b-41d4-a716-446655440051',
+        name: 'Linen Weekend Shirt',
+        price: 125,
+        sale_price: null,
+        image_url: 'linen-weekend-shirt.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440053': {
+        id: '550e8400-e29b-41d4-a716-446655440053',
+        name: 'Stretch Chino Trousers',
+        price: 95,
+        sale_price: null,
+        image_url: 'stretch-chino-trousers.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440054': {
+        id: '550e8400-e29b-41d4-a716-446655440054',
+        name: 'Slim Fit Chino Pants',
+        price: 85,
+        sale_price: null,
+        image_url: 'slim-fit-chino-pants-navy-blue.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440055': {
+        id: '550e8400-e29b-41d4-a716-446655440055',
+        name: 'Slim-Fit Dark Wash Jeans',
+        price: 115,
+        sale_price: null,
+        image_url: 'slim-fit-dark-wash-jeans.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440056': {
+        id: '550e8400-e29b-41d4-a716-446655440056',
+        name: 'Quilted Bomber Jacket',
+        price: 185,
+        sale_price: null,
+        image_url: 'quilted-bomber-jacket.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440057': {
+        id: '550e8400-e29b-41d4-a716-446655440057',
+        name: 'Wool Pea Coat',
+        price: 298,
+        sale_price: null,
+        image_url: 'wool-pea-coat.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440058': {
+        id: '550e8400-e29b-41d4-a716-446655440058',
+        name: 'Navy Wool Business Suit',
+        price: 595,
+        sale_price: null,
+        image_url: 'navy-wool-business-suit.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440059': {
+        id: '550e8400-e29b-41d4-a716-446655440059',
+        name: 'Leather Dress Oxfords',
+        price: 245,
+        sale_price: null,
+        image_url: 'leather-dress-oxfords.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440060': {
+        id: '550e8400-e29b-41d4-a716-446655440060',
+        name: 'Canvas High-Top Sneakers',
+        price: 85,
+        sale_price: null,
+        image_url: 'canvas-high-top-sneakers.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440061': {
+        id: '550e8400-e29b-41d4-a716-446655440061',
+        name: 'Leather Messenger Bag',
+        price: 195,
+        sale_price: null,
+        image_url: 'leather-messenger-bag.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440062': {
+        id: '550e8400-e29b-41d4-a716-446655440062',
+        name: 'Minimalist Steel Watch',
+        price: 155,
+        sale_price: null,
+        image_url: 'minimalist-steel-watch.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440063': {
+        id: '550e8400-e29b-41d4-a716-446655440063',
+        name: 'Vintage Leather Strap Watch',
+        price: 135,
+        sale_price: null,
+        image_url: 'vintage-leather-strap-watch.jpg',
+        is_sale: false
+      },
+      
+      // Accessories Products (201-212)
+      '550e8400-e29b-41d4-a716-446655440201': {
+        id: '550e8400-e29b-41d4-a716-446655440201',
+        name: 'Vintage Leather Satchel',
+        price: 289,
+        sale_price: null,
+        image_url: 'vintage-leather-satchel.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440202': {
+        id: '550e8400-e29b-41d4-a716-446655440202',
+        name: 'Canvas Weekender Bag',
+        price: 149,
+        sale_price: 119,
+        image_url: 'crossbody.jpeg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440203': {
+        id: '550e8400-e29b-41d4-a716-446655440203',
+        name: 'Sterling Silver Signet Ring',
+        price: 179,
+        sale_price: null,
+        image_url: 'sterling-silver-signet-ring.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440204': {
+        id: '550e8400-e29b-41d4-a716-446655440204',
+        name: 'Beaded Charm Bracelet',
+        price: 89,
+        sale_price: 69,
+        image_url: 'beaded-charm-bracelet.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440205': {
+        id: '550e8400-e29b-41d4-a716-446655440205',
+        name: 'Rose Gold Mesh Watch',
+        price: 245,
+        sale_price: null,
+        image_url: 'rose-gold-mesh-watch.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440206': {
+        id: '550e8400-e29b-41d4-a716-446655440206',
+        name: 'Smart Fitness Tracker',
+        price: 199,
+        sale_price: 159,
+        image_url: 'smart-fitness-tracker.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440207': {
+        id: '550e8400-e29b-41d4-a716-446655440207',
+        name: 'Aviator Polarized Sunglasses',
+        price: 159,
+        sale_price: null,
+        image_url: 'aviator-polarized-sunglasses.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440208': {
+        id: '550e8400-e29b-41d4-a716-446655440208',
+        name: 'Oversized Cat-Eye Frames',
+        price: 129,
+        sale_price: 99,
+        image_url: 'oversized-cat-eye-frames.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440209': {
+        id: '550e8400-e29b-41d4-a716-446655440209',
+        name: 'Wide-Brim Fedora Hat',
+        price: 89,
+        sale_price: null,
+        image_url: 'wide-brim-fedora-hat.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440210': {
+        id: '550e8400-e29b-41d4-a716-446655440210',
+        name: 'Cashmere Blend Winter Scarf',
+        price: 125,
+        sale_price: null,
+        image_url: 'cashmere-blend-winter-scarf.jpg',
+        is_sale: false
+      },
+      '550e8400-e29b-41d4-a716-446655440211': {
+        id: '550e8400-e29b-41d4-a716-446655440211',
+        name: 'Genuine Leather Belt',
+        price: 79,
+        sale_price: 59,
+        image_url: 'genuine-leather-belt.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440212': {
+        id: '550e8400-e29b-41d4-a716-446655440212',
+        name: 'Minimalist Card Holder',
+        price: 49,
+        sale_price: null,
+        image_url: 'minimalist-card-holder.jpg',
+        is_sale: false
+      },
+      
+      // Sale Products (301-308)
+      '550e8400-e29b-41d4-a716-446655440301': {
+        id: '550e8400-e29b-41d4-a716-446655440301',
+        name: 'Cashmere Wrap Cardigan',
+        price: 398,
+        sale_price: 239,
+        image_url: 'cashmere-wrap-cardigan.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440302': {
+        id: '550e8400-e29b-41d4-a716-446655440302',
+        name: 'Floral Wrap Maxi Dress',
+        price: 285,
+        sale_price: 171,
+        image_url: 'floral-wrap-maxi-dress.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440303': {
+        id: '550e8400-e29b-41d4-a716-446655440303',
+        name: 'Leather Ankle Boots',
+        price: 245,
+        sale_price: 147,
+        image_url: 'leather-ankle-boots.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440304': {
+        id: '550e8400-e29b-41d4-a716-446655440304',
+        name: 'Merino Wool V-Neck Sweater',
+        price: 165,
+        sale_price: 99,
+        image_url: 'merino-wool-v-neck-sweater.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440305': {
+        id: '550e8400-e29b-41d4-a716-446655440305',
+        name: 'Denim Trucker Jacket',
+        price: 125,
+        sale_price: 75,
+        image_url: 'denim-trucker-jacket.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440306': {
+        id: '550e8400-e29b-41d4-a716-446655440306',
+        name: 'Designer Sunglasses',
+        price: 225,
+        sale_price: 135,
+        image_url: 'designer-sunglasses.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440307': {
+        id: '550e8400-e29b-41d4-a716-446655440307',
+        name: 'Crossbody Phone Bag',
+        price: 75,
+        sale_price: 45,
+        image_url: 'crossbody-phone-bag.jpg',
+        is_sale: true
+      },
+      '550e8400-e29b-41d4-a716-446655440308': {
+        id: '550e8400-e29b-41d4-a716-446655440308',
+        name: 'Bohemian Kimono Jacket',
+        price: 145,
+        sale_price: 87,
+        image_url: 'bohemian-kimono-jacket.jpg',
+        is_sale: true
       }
     };
 
