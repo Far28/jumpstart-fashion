@@ -25,7 +25,7 @@ export const TrendingProducts = () => {
       name: "Rose Gold Evening Clutch",
       price: 199,
       originalPrice: 259,
-      image: getImageUrl('image.png'),
+      image: getImageUrl('clutches.jpg'),
       brand: "GLAMOUR NIGHTS",
       rating: 4.8,
       isNew: false,
