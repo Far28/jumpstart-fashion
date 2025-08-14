@@ -90,7 +90,7 @@ const Categories = () => {
 			rating: 4.7,
 			isNew: false,
 			isSale: false,
-			image: getImageUrl("Crossbody Phone Bag.jpg"),
+			image: getImageUrl("crossbody-leather-purse.jpg"),
 		},
 	];
 
