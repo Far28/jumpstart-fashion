@@ -167,7 +167,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         name: 'Elegant Evening Dress',
         price: 129.99,
         sale_price: null,
-        image_url: '/images/dress.png',
+        image_url: 'dress.png',
         is_sale: false
       },
       '550e8400-e29b-41d4-a716-446655440002': {
@@ -175,7 +175,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         name: 'Luxury Designer Clutch',
         price: 89.99,
         sale_price: null,
-        image_url: '/images/image.png',
+        image_url: 'image.png',
         is_sale: false
       },
       '550e8400-e29b-41d4-a716-446655440003': {

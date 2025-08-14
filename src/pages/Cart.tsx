@@ -12,6 +12,22 @@ import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Truck } from "lucide-reac
 import { Link } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
+// Helper function to get correct image path
+const getImageUrl = (imageName: string) => {
+  if (!imageName) return '/placeholder.svg';
+  if (imageName.startsWith('http')) return imageName; // Already a full URL
+  
+  // Remove any leading slashes or 'images/' prefix from imageName
+  const cleanImageName = imageName.replace(/^(\/|images\/)+/, '');
+  
+  const base = import.meta.env.BASE_URL;
+  
+  // Simple and reliable path construction
+  const finalUrl = `${base}images/${cleanImageName}`;
+  
+  return finalUrl;
+};
+
 const Cart = () => {
   const { items, updateQuantity, removeFromCart, getTotalItems, getTotalPrice, clearCart } = useCart();
   const { user } = useAuth();
@@ -96,7 +112,7 @@ const Cart = () => {
                     <div className="w-20 h-20 bg-gray-200 rounded-md flex-shrink-0">
                       {item.product?.image_url && (
                         <img 
-                          src={item.product.image_url} 
+                          src={getImageUrl(item.product.image_url)} 
                           alt={item.product.name}
                           className="w-full h-full object-cover rounded-md"
                         />
