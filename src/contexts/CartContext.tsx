@@ -210,27 +210,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         image_url: 'organic-cotton-henley.jpg',
         is_sale: false
       }
-      '550e8400-e29b-41d4-a716-446655440003': {
-        id: '550e8400-e29b-41d4-a716-446655440003',
-        name: 'Bohemian Maxi Dress',
-        price: 79.99,
-        sale_price: null,
-        image_url: '/placeholder.svg',
-        is_sale: false
-      },
-      '550e8400-e29b-41d4-a716-446655440004': {
-        id: '550e8400-e29b-41d4-a716-446655440004',
-        name: 'Classic Trench Coat',
-        price: 199.99,
-        sale_price: null,
-        image_url: '/placeholder.svg',
-        is_sale: false
-      },
-      '550e8400-e29b-41d4-a716-446655440005': {
-        id: '550e8400-e29b-41d4-a716-446655440005',
-        name: 'Silk Blouse',
-        price: 69.99,
-        sale_price: null,
         image_url: '/placeholder.svg',
         is_sale: false
       },
